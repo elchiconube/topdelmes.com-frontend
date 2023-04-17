@@ -5,39 +5,44 @@ import Layout from '../components/Layout'
 import styles from '../styles/Home.module.css'
 import axios from 'axios';
 import {getMonthName} from '../utils'
+import Link from 'next/link';
 
 const Home = ({ series, movies }) => {
 
   const [year, setYear] = useState(new Date().getFullYear());
   const [month, setMonth] = useState(new Date().getMonth());
 
-  
+  const monthName = getMonthName(month);
 
-console.log({series})
     return (
         <Layout>
-          <div className={styles.container}>
             <Head>
-              <title>Top de series y películas del mes</title>
-              <meta name="description" content="Estas son las mejores series y películas del mes." />
-              <meta name="keywords" content="top, series, peliculas" />
+              <title>{`TopDelMes ${monthName}: Las 10 Películas y Series Más Populares del Mes`}</title>
+              <meta name="description" content={`Descubre las 10 películas y series más populares de ${monthName} en TopDelMes.com. ¡Entérate de lo más visto y no te pierdas ninguna novedad!`} />
+              <meta name="keywords" content={`Películas y series del mes, top 10, estrenos, mejores, ${monthName}`} />
             </Head>
-            <main>
-              <h1 className={styles.title}>
-                Top del mes de {getMonthName(month)}
-              </h1>
-              <div itemscope itemtype="http://schema.org/ItemList">
-                <p className={styles.subtitle}>Las series mejor puntuadas durante el mes de {getMonthName(month)}</p>
-                <h2 className={styles.title}>Top 10 de series</h2>
-                <List items={series} dataprop="TVSeries" />
+            <header className={styles.header}>
+              <div>
+              <h1 className={styles.heading}>Top del mes de {monthName}</h1>
+                <p>Bienvenido a TopDelMes, tu fuente de información sobre las películas y series más populares del mes actual. Aquí encontrarás las últimas tendencias y los estrenos que están arrasando en el mundo del cine y la televisión.</p>
               </div>
-              <div itemscope itemtype="http://schema.org/ItemList">
-                <p className={styles.subtitle}>Las películas mejor puntuadas durante el mes de {getMonthName(month)}</p>
-                <h2 className={styles.title}>Top 10 de películas</h2>
-                <List items={movies} dataprop="Movie" />
-              </div>
-            </main>
-          </div>
+            </header>
+            <section className={styles.section} itemscope itemType="http://schema.org/ItemList">
+              <p className={styles.subtitle}>Las series mejor puntuadas durante el mes de {monthName}</p>
+              <h2 className={styles.title}>Top 10 de series</h2>
+              <List items={series} dataprop="TVSeries" />
+              <footer className={styles.section_footer}>
+                <Link className={styles.cta} href="/series">Ver ranking completo de series</Link>
+              </footer>
+            </section>
+            <section className={styles.section} itemscope itemType="http://schema.org/ItemList">
+              <p className={styles.subtitle}>Las películas mejor puntuadas durante el mes de {monthName}</p>
+              <h2 className={styles.title}>Top 10 de películas</h2>
+              <List items={movies} dataprop="Movie" />
+              <footer className={styles.section_footer}>
+                <Link className={styles.cta} href="/peliculas">Ver ranking completo de películas</Link>
+              </footer>
+            </section>
         </Layout>
   )
 }

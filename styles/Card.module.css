@@ -5,7 +5,6 @@
   aspect-ratio: 2 / 3;
   border-radius: 6px;
   overflow: hidden;
-  margin-bottom: 20px;
   transition: var(--transition-1);
 }
 
@@ -27,13 +26,20 @@
   transition: var(--transition-1);
 }
 
-.header time {
+.time {
   color: var(--citrine);
   font-size: var(--fs-9);
   font-weight: var(--fw-500);
   white-space: nowrap;
   position: relative;
   top: 2px;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 9px;
 }
 
 .data > p {
@@ -52,6 +58,6 @@
   display:flex;
   gap: 8px;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 

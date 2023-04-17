@@ -1,3 +1,29 @@
+
+.header{
+  background-image: url('/pattern.png');
+  background-color: var(--raisin-black);
+  min-height: 30vh;
+  background-size: 35%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header > div {
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--gainsboro);
+  font-size: var(--fs-7);
+}
+
+.heading{
+  text-align: center;
+  font-size: var(--fs-1);
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
 .title{
   margin-bottom: 50px;
   text-align: center;
@@ -16,3 +42,36 @@
   text-align: center;
 }
 
+.section {
+  padding: 32px 0 0 0;
+  border-top: 1px solid var(--gunmetal-2);
+}
+
+
+.section_footer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--black)
+}
+
+.cta{
+  color: var(--white);
+  font-size: var(--fs-11);
+  font-weight: var(--fw-700);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 30px;
+  border: 2px solid var(--citrine);
+  border-radius: 50px;
+  transition: var(--transition-1);
+}
+
+.cta:hover {
+  background: var(--citrine);
+    color: var(--xiketic);
+}
