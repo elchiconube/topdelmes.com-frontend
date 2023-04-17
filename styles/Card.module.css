@@ -18,7 +18,7 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: top;
 }
 
 .header h3 {
@@ -31,6 +31,9 @@
   color: var(--citrine);
   font-size: var(--fs-9);
   font-weight: var(--fw-500);
+  white-space: nowrap;
+  position: relative;
+  top: 2px;
 }
 
 .data > p {

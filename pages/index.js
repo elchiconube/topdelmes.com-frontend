@@ -24,16 +24,17 @@ console.log({series})
             </Head>
             <main>
               <h1 className={styles.title}>
-                Top del mes
+                Top del mes de {getMonthName(month)}
               </h1>
-              <div>
-                <p className={styles.subtitle}>Las series mejor puntuadas durante {getMonthName(month)}</p>
-                <h2 className={styles.title}>Top de series</h2>
-                <List items={series} year={year} />
+              <div itemscope itemtype="http://schema.org/ItemList">
+                <p className={styles.subtitle}>Las series mejor puntuadas durante el mes de {getMonthName(month)}</p>
+                <h2 className={styles.title}>Top 10 de series</h2>
+                <List items={series} dataprop="TVSeries" />
               </div>
-              <div>
-                <p className={styles.subtitle}>Las más vistas</p>
-                <h2 className={styles.title}>Top de películas</h2>
+              <div itemscope itemtype="http://schema.org/ItemList">
+                <p className={styles.subtitle}>Las películas mejor puntuadas durante el mes de {getMonthName(month)}</p>
+                <h2 className={styles.title}>Top 10 de películas</h2>
+                <List items={movies} dataprop="Movie" />
               </div>
             </main>
           </div>
