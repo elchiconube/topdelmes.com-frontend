@@ -1,72 +1,33 @@
-// components/Footer.js
 import Link from 'next/link'
 import styles from '../styles/Footer.module.css'
 
 const Footer = () => {
     return (
         <footer className={styles.footer}>
-            <div className={styles.footerContainer}>
-                <div className={styles.footerColumn}>
-                    <h3>Enlaces rápidos</h3>
-                    <ul className={styles.footerList}>
+            <div className={styles.container}>
+                <div className={styles.column}>
+                    <h4 className={styles.heading}>Navegación</h4>
+                    <ul className={styles.list}>
                         <li>
-                            <Link href="/" className={styles.footerLink}>
+                            <Link href="/" className={styles.link}>
                                 Inicio
                             </Link>
                         </li>
-                        <li className={styles.navItem}>
-                            <Link href="/habitaciones" className={styles.navLink}>
-                                Apartamentos
-                            </Link>
-                        </li>
-                        <li className={styles.navItem}>
-                            <Link href="/actividades" className={styles.navLink}>
-                                Actividades
-                            </Link>
-                        </li>
-                        <li className={styles.navItem}>
-                            <Link href="/ofertas" className={styles.navLink}>
-                                Ofertas
-                            </Link>
-                        </li>
-                        <li className={styles.navItem}>
-                            <Link href="/servicios" className={styles.navLink}>
-                                Servicios
-                            </Link>
-                        </li>
-                        <li className={styles.navItem}>
-                            <Link href="/galeria" className={styles.navLink}>
-                                Galería
-                            </Link>
-                        </li>
-                        <li className={styles.navItem}>
-                            <Link href="/contacto" className={styles.navLink}>
-                                Contacto
-                            </Link>
-                        </li>
-
-                    </ul>
-                </div>
-                <div className={styles.footerColumn}>
-                    <h3>Contacto</h3>
-                    <p>Dirección: Calle Ejemplo 123, Ciudad</p>
-                    <p>Teléfono: +1 (123) 456-7890</p>
-                    <p>Email: info@hotelxyz.com</p>
-                </div>
-                <div className={styles.footerColumn}>
-                    <h3>Síguenos</h3>
-                    <ul className={styles.socialList}>
                         <li>
-                            <Link href="https://www.facebook.com/hotelxyz"  target="_blank" rel="noopener noreferrer">
-                               Facebook
+                            <Link href="/series" className={styles.link}>
+                                Series
                             </Link>
                         </li>
-                        {/* ... */}
+                        <li>
+                            <Link href="/peliculas" className={styles.link}>
+                                Películas
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </div>
-            <div className={styles.footerCopyright}>
-                &copy; {new Date().getFullYear()} Hotel XYZ. Todos los derechos reservados.
+            <div className={styles.copyright}>
+                &copy; {new Date().getFullYear()} Top del mes.
             </div>
         </footer>
     )
