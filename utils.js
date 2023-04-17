@@ -20,7 +20,6 @@ export const formatVotes = (num) => {
 }
 
 const isValidMonth = (month) => {
-  console.log({month})
   const validMonths = [
     "enero", "febrero", "marzo", "abril", "mayo", "junio",
     "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
