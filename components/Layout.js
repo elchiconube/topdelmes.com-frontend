@@ -1,7 +1,5 @@
-// components/Layout.js
-import Navbar from './Navbar'
 import Footer from './Footer'
-import Script from 'next/script'
+import Navbar from './NavBar'
 
 import styles from '../styles/Layout.module.css'
 
