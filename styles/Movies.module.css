@@ -1,0 +1,20 @@
+.title{
+  margin-bottom: 50px;
+  text-align: center;
+  font-size: var(--fs-2);
+  color: var(--white);
+  line-height: 1.2;
+}
+
+.subtitle{
+  color: var(--citrine);
+  font-size: var(--fs-11);
+  font-weight: var(--fw-500);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.section {
+  padding: 32px 0 0 0;
+}
