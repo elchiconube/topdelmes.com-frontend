@@ -1,13 +1,13 @@
 {
-  "name": "apartamentos",
+  "name": "topdelmes.com",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && yarn build:sitemap",
     "start": "next start",
     "lint": "next lint",
-    "sitemap": "node generate-sitemap.js"
+    "build:sitemap": "node generate-sitemap.js"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.0.8",
