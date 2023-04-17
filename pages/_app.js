@@ -1,6 +1,6 @@
-import '@/styles/globals.css'
-import Script from 'next/script'
 import { Poppins } from 'next/font/google'
+import Script from 'next/script'
+import '@/styles/globals.css'
 
 const poppins = Poppins({
   weight: ['500', '700'],
@@ -8,10 +8,8 @@ const poppins = Poppins({
   subsets: ['latin'],
 })
 
-
 export default function App({ Component, pageProps }) {
   return <>
-    <Script strategy="afterInteractive" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0417095919520461" crossorigin="anonymous" />
     <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-NP9L1106X4" />
     <Script
       id='google-analytics'
