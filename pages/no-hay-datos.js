@@ -6,7 +6,7 @@ import axios from 'axios';
 import { getMonthName } from '@/utils'
 import Link from 'next/link';
 
-const Home = ({ series, movies }) => {
+const NoData = ({ series, movies }) => {
 
   const month = getMonthName(new Date().getMonth());
 
@@ -17,12 +17,18 @@ const Home = ({ series, movies }) => {
         <meta name="description" content={`Descubre las 10 películas y series más populares de ${month} en TopDelMes.com. ¡Entérate de lo más visto y no te pierdas ninguna novedad!`} />
         <meta name="keywords" content={`Películas y series del mes, top 10, estrenos, mejores, ${month}`} />
       </Head>
-      <header className={styles.header}>
-        <div>
-          <h1 className={styles.heading}>Top del mes de {month}</h1>
-          <p>Bienvenido a TopDelMes, tu fuente de información sobre las películas y series más populares del mes actual. Aquí encontrarás las últimas tendencias y los estrenos que están arrasando en el mundo del cine y la televisión.</p>
-        </div>
-      </header>
+
+      <section className={styles.error}>
+          <h1 className={styles.heading}>Vaya creo que te has equivocado</h1>
+          <p>Lo siento pero no tenemos datos o la fecha no es correcta</p>
+          <p>Para obtener series puedes probar a partir 1990 y para películas a partir de 1920. Por ejemplo</p>
+          <ul>
+            <li><Link href="/series/1990/enero">Top 10 de series en enero de 1990</Link></li>
+            <li><Link href="/peliculas/1925/enero">Top 10 de peliculas en abril de 1925</Link></li>
+          </ul>
+          <p>Prueba a cambiar el año y el mes.</p>
+          <p>Mientras te dejamos el top 10 de películas y series de {month}</p>
+        </section>
       <section className={styles.section} itemScope itemType="http://schema.org/ItemList">
         <p className={styles.subtitle}>Las series mejor puntuadas durante el mes de {month}</p>
         <h2 className={styles.title}>Top 10 de series</h2>
@@ -61,4 +67,4 @@ export async function getServerSideProps() {
   }
 }
 
-export default Home;
+export default NoData;

@@ -1,29 +1,25 @@
-import {useState} from 'react'
 import Head from 'next/head'
-import styles from '../styles/Movies.module.css'
-import List from '../components/List'
+import styles from '@/styles/Movies.module.css'
+import List from '@/components/List'
 import Layout from "@/components/Layout";
 import axios from 'axios';
-import { getMonthName } from '../utils'
+import { getMonthName } from '@/utils'
 
 const Movies = ({ movies }) => {
-
-    const [year, setYear] = useState(new Date().getFullYear());
-    const [month, setMonth] = useState(new Date().getMonth());
   
-    const monthName = getMonthName(month);
+    const month = getMonthName(new Date().getMonth());
 
     return (
         <Layout>
             <Head>
-                <title>{`Mejores Películas de monthName: Listado Completo y Actualizado | TopDelMes`}</title>
-                <meta name="description" content={`Echa un vistazo a las mejores películas de monthName en nuestra selección completa y actualizada en TopDelMes.com. ¡No te pierdas los últimos estrenos!`} />
-                <meta name="keywords" content={`mejores películas monthName, películas populares monthName, películas del mes monthName`} />
+                <title>{`Mejores Películas de ${month}: Listado Completo y Actualizado | TopDelMes`}</title>
+                <meta name="description" content={`Echa un vistazo a las mejores películas de ${month} en nuestra selección completa y actualizada en TopDelMes.com. ¡No te pierdas los últimos estrenos!`} />
+                <meta name="keywords" content={`mejores películas ${month}, películas populares ${month}, películas del mes ${month}`} />
             </Head>
             <div className={styles.section} itemScope itemType="http://schema.org/ItemList">
-                <p className={styles.subtitle}>Las películas mejor puntuadas durante el mes de {monthName}</p>
+                <p className={styles.subtitle}>Las películas mejor puntuadas durante el mes de {month}</p>
                 <h1 className={styles.title}>Ranking de películas</h1>
-                <p>Aquí, en TopDelMes, nos encanta el cine y queremos compartir contigo las mejores películas del mes. Nuestra selección incluye los estrenos más recientes y las películas que están haciendo historia en la taquilla. Consulta nuestra lista actualizada y encuentra tu próxima película favorita.</p>
+                <p className={styles.description}>Aquí, en TopDelMes, nos encanta el cine y queremos compartir contigo las mejores películas del mes. Nuestra selección incluye los estrenos más recientes y las películas que están haciendo historia en la taquilla. Consulta nuestra lista actualizada y encuentra tu próxima película favorita.</p>
                 <List items={movies} dataprop="Movie" />
             </div>
         </Layout>

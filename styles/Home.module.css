@@ -16,6 +16,36 @@
   font-size: var(--fs-7);
 }
 
+.error{
+  padding: 40px;
+  color: var(--gainsboro);
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.error h1 {
+  margin-bottom: 21px;
+}
+
+.error p,
+.error ul{
+  margin-bottom: 12px;
+}
+
+.error a {
+  color: var(--gainsboro);
+  text-decoration: underline;
+  font-size: var(--fs-7);
+  transition: var(--transition-1);
+}
+
+.error a:hover {
+  color: var(--citrine);
+  text-decoration: underline;
+  font-size: var(--fs-7);
+}
+
 .heading{
   text-align: center;
   font-size: var(--fs-1);

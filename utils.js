@@ -18,3 +18,21 @@ export const formatVotes = (num) => {
     return num.toString();
   }
 }
+
+const isValidMonth = (month) => {
+  console.log({month})
+  const validMonths = [
+    "enero", "febrero", "marzo", "abril", "mayo", "junio",
+    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+  ];
+  return validMonths.includes(month);
+}
+
+const isValidYear = (year, type) => {
+  const firstYear = type === 'movies' ? 1920 : 1990;
+  const currentYear = new Date().getFullYear();
+  const parsedYear = parseInt(year);
+  return parsedYear >= firstYear && parsedYear <= currentYear;
+}
+
+export const validateYearAndMonth = (year, month, type) => isValidYear(year, type) && isValidMonth(month);

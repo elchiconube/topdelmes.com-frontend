@@ -1,6 +1,7 @@
 
 
 .navbar {
+    padding: 0 32px;
     background: var(--rich-black-fogra-39);
 }
 

@@ -1,29 +1,25 @@
-import {useState} from 'react'
 import Head from 'next/head'
-import styles from '../styles/Series.module.css'
-import List from '../components/List'
+import styles from '@/styles/Series.module.css'
+import List from '@/components/List'
 import Layout from "@/components/Layout";
 import axios from 'axios';
 import { getMonthName } from '../utils'
 
 const Series = ({ series }) => {
 
-    const [year, setYear] = useState(new Date().getFullYear());
-    const [month, setMonth] = useState(new Date().getMonth());
-  
-    const monthName = getMonthName(month);
+    const month = getMonthName(new Date().getMonth());
 
     return (
         <Layout>
             <Head>
-                <title>{`Mejores Series de ${monthName}: Listado Completo y Actualizado | TopDelMes`}</title>
-                <meta name="description" content={`Explora las mejores series de ${monthName} en nuestra lista completa y actualizada en TopDelMes.com. ¡Encuentra tus series favoritas y descubre nuevas!`} />
-                <meta name="keywords" content={`mejores series ${monthName}, series populares ${monthName}, series del mes ${monthName}`} />
+                <title>{`Mejores Series de ${month}: Listado Completo y Actualizado | TopDelMes`}</title>
+                <meta name="description" content={`Explora las mejores series de ${month} en nuestra lista completa y actualizada en TopDelMes.com. ¡Encuentra tus series favoritas y descubre nuevas!`} />
+                <meta name="keywords" content={`mejores series ${month}, series populares ${month}, series del mes ${month}`} />
             </Head>
-            <div className={styles.section} itemscope itemType="http://schema.org/ItemList">
-                <p className={styles.subtitle}>Las series mejor puntuadas durante el mes de {monthName}</p>
+            <div className={styles.section} itemScope itemType="http://schema.org/ItemList">
+                <p className={styles.subtitle}>Las series mejor puntuadas durante el mes de {month}</p>
                 <h1 className={styles.title}>Ranking de series</h1>
-                <p>En TopDelMes, nos esforzamos por mantenerte al día con las series más populares y emocionantes del momento. Nuestra lista de las mejores series del mes se actualiza regularmente para asegurarnos de que siempre estés informado sobre las novedades y las series que no puedes perderte.</p>
+                <p className={styles.description}>En TopDelMes, nos esforzamos por mantenerte al día con las series más populares y emocionantes del momento. Nuestra lista de las mejores series del mes se actualiza regularmente para asegurarnos de que siempre estés informado sobre las novedades y las series que no puedes perderte.</p>
                 <List items={series} dataprop="TVSeries" />
             </div>
         </Layout>

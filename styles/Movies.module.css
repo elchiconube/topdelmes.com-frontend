@@ -1,9 +1,9 @@
 .title{
-  margin-bottom: 50px;
   text-align: center;
   font-size: var(--fs-2);
   color: var(--white);
   line-height: 1.2;
+  margin-bottom: 16px;
 }
 
 .subtitle{
@@ -17,4 +17,12 @@
 }
 .section {
   padding: 32px 0 0 0;
+}
+
+.description {
+  padding: 0 32px;
+  font-size: var(--fs-13);
+  font-weight: var(--fw-500);
+  color: var(--white);
+  margin-bottom: 50px;
 }
