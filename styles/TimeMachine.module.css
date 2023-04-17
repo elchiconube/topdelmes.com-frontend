@@ -1,0 +1,73 @@
+
+
+.section {
+  background-image: url('/pattern.png');
+  background-color: var(--raisin-black);
+  min-height: 30vh;
+  background-size: 35%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0;
+  border-top: 1px solid var(--gunmetal-2);
+}
+
+.section > div {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section > div > p{
+  color: var(--white);
+  letter-spacing: 1px;
+  margin-bottom: 21px;
+  text-align: center;
+}
+
+.title{
+  margin-bottom: 21px;
+  text-align: center;
+  font-size: var(--fs-2);
+  color: var(--white);
+  line-height: 1.2;
+}
+
+.subtitle{
+  color: var(--citrine);
+  font-size: var(--fs-11);
+  font-weight: var(--fw-500);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+
+.cta{
+  max-width: 360px;
+  color: var(--white);
+  font-size: var(--fs-11);
+  font-weight: var(--fw-700);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: inline-block;
+  gap: 10px;
+  padding: 16px 30px;
+  border: 2px solid var(--citrine);
+  border-radius: 50px;
+  transition: var(--transition-1);
+  white-space: nowrap;
+
+}
+
+.cta:hover {
+  background: var(--citrine);
+    color: var(--xiketic);
+}

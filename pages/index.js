@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import List from '@/components/List'
 import Layout from '@/components/Layout'
+import TimeMachine from '@/components/TimeMachine'
 import styles from '@/styles/Home.module.css'
 import axios from 'axios';
 import { getMonthName } from '@/utils'
@@ -30,6 +31,9 @@ const Home = ({ series, movies }) => {
         <footer className={styles.section_footer}>
           <Link className={styles.cta} href="/series">Ver ranking completo de series</Link>
         </footer>
+      </section>
+      <section>
+        <TimeMachine />
       </section>
       <section className={styles.section} itemScope itemType="http://schema.org/ItemList">
         <p className={styles.subtitle}>Las películas mejor puntuadas durante el mes de {month}</p>
