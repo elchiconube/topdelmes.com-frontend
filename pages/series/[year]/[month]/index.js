@@ -4,12 +4,12 @@ import styles from '@/styles/Series.module.css'
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import { validateYearAndMonth } from '@/utils'
+import { validateYearAndMonth, getMonthNumber } from '@/utils'
 
 const Series = ({ year, month, series }) => {
 
   const { isFallback } = useRouter();
-  
+
   if (isFallback) {
     return <div>Cargando...</div>;
   }
@@ -41,7 +41,6 @@ const Series = ({ year, month, series }) => {
 
 export async function getServerSideProps(context) {
   const { year, month } = context.params;
-  const monthNumber = new Date(Date.parse(`${month} 1, 2021`)).getMonth() + 1;
 
   try {
 
@@ -54,9 +53,11 @@ export async function getServerSideProps(context) {
       };
     }
 
+    const monthNumber = getMonthNumber(month);
+
     const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/series?api_key=${process.env.NEXT_PUBLIC_API_KEY}&month=${monthNumber}&year=${year}`);
 
-    const series = response.data.slice(0,10);
+    const series = response.data.slice(0, 10);
 
     return { props: { series, year, month, } };
   } catch (error) {

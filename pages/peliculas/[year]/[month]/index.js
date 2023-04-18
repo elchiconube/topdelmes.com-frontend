@@ -4,18 +4,16 @@ import styles from '@/styles/Movies.module.css'
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import { validateYearAndMonth } from '@/utils'
-import { redirect } from 'next/navigation';
+import { validateYearAndMonth, getMonthNumber } from '@/utils'
 
 const Peliculas = ({ year, month, movies }) => {
-  const router = useRouter();
 
-  if(!validateYearAndMonth(year, month, 'series')) redirect('/no-hay-datos');
+  const { isFallback } = useRouter();
 
-  if (router.isFallback) {
+  if (isFallback) {
     return <div>Cargando...</div>;
   }
-
+  
   return (
     <Layout>
       <Head>
@@ -43,13 +41,21 @@ const Peliculas = ({ year, month, movies }) => {
 
 export async function getServerSideProps(context) {
   const { year, month } = context.params;
-  const monthNumber = new Date(Date.parse(`${month} 1, 2021`)).getMonth() + 1;
 
   try {
 
-    if (!validateYearAndMonth(year, month, 'movies')) throw new Error('Año o mes no válido');
+    if (!validateYearAndMonth(year, month, 'movies')) {
+      return {
+        redirect: {
+          destination: '/no-hay-datos',
+          permanent: false,
+        },
+      };
+    }
 
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/movies?api_key=${process.env.NEXT_PUBLIC_API_KEY}&month=${monthNumber}&year=${year.toLowerCase()}`);
+    const monthNumber = getMonthNumber(month);
+
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/movies?api_key=${process.env.NEXT_PUBLIC_API_KEY}&month=${monthNumber}&year=${year}`);
 
     const movies = response.data.slice(0, 10);
 
@@ -60,5 +66,6 @@ export async function getServerSideProps(context) {
   }
 
 }
+
 
 export default Peliculas;
