@@ -4,7 +4,7 @@ import styles from '@/styles/Series.module.css'
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import { validateYearAndMonth, getMonthNumber } from '@/utils'
+import {validateYearAndMonth, getMonthNumber, isCurrentMonthAndYear} from '@/utils'
 
 const Series = ({ year, month, series }) => {
 
@@ -17,9 +17,10 @@ const Series = ({ year, month, series }) => {
   return (
     <Layout>
       <Head>
-        <title>{`Mejores Series de ${month} ${year}: Listado Completo y Actualizado | TopDelMes`}</title>
+        <title>{`Top ${month} ${year}: Mejores Series Actualizadas | TopDelMes`}</title>
         <meta name="description" content={`Explora las mejores series de ${month} ${year} en nuestra lista completa y actualizada en TopDelMes.com. ¡Encuentra tus series favoritas y descubre nuevas!`} />
         <meta name="keywords" content={`mejores series ${month} ${year}, series populares ${month} ${year}, series del mes ${month} ${year}`} />
+        <link rel="canonical" href={`https://www.topdelmes.com/series/${year}/${month}`} />
       </Head>
       <div className={styles.section} itemScope itemType="http://schema.org/ItemList">
         <p className={styles.subtitle}>Las series mejor puntuadas durante el mes de {month} de {year}</p>
@@ -42,7 +43,17 @@ const Series = ({ year, month, series }) => {
 export async function getServerSideProps(context) {
   const { year, month } = context.params;
 
+  console.log({year, month})
   try {
+
+    if(isCurrentMonthAndYear(year, month)){
+        return {
+            redirect: {
+            destination: '/series',
+            permanent: false,
+            },
+        };
+    }
 
     if (!validateYearAndMonth(year, month, 'series')) {
       return {

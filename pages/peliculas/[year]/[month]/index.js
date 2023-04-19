@@ -4,7 +4,7 @@ import styles from '@/styles/Movies.module.css'
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import { validateYearAndMonth, getMonthNumber } from '@/utils'
+import {validateYearAndMonth, getMonthNumber, isCurrentMonthAndYear} from '@/utils'
 
 const Peliculas = ({ year, month, movies }) => {
 
@@ -13,13 +13,14 @@ const Peliculas = ({ year, month, movies }) => {
   if (isFallback) {
     return <div>Cargando...</div>;
   }
-  
+
   return (
     <Layout>
       <Head>
-        <title>{`Mejores Películas de ${month} ${year}: Listado Completo y Actualizado | TopDelMes`}</title>
+        <title>{`Top ${month} ${year}: Mejores Películas Actualizadas | TopDelMes`}</title>
         <meta name="description" content={`Explora las mejores películas de ${month} ${year} en nuestra lista completa y actualizada en TopDelMes.com. ¡Encuentra tus películas favoritas y descubre nuevas!`} />
         <meta name="keywords" content={`mejores películas ${month} ${year}, películas populares ${month} ${year}, películas del mes ${month} ${year}`} />
+        <link rel="canonical" href={`https://www.topdelmes.com/peliculas/${year}/${month}`} />
       </Head>
       <div className={styles.section} itemScope itemType="http://schema.org/ItemList">
         <p className={styles.subtitle}>Las películas mejor puntuadas durante el mes de {month} de {year}</p>
@@ -43,6 +44,15 @@ export async function getServerSideProps(context) {
   const { year, month } = context.params;
 
   try {
+
+    if(isCurrentMonthAndYear(year, month)){
+      return {
+        redirect: {
+          destination: '/peliculas',
+          permanent: false,
+        },
+      };
+    }
 
     if (!validateYearAndMonth(year, month, 'movies')) {
       return {

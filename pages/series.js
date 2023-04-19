@@ -3,7 +3,7 @@ import styles from '@/styles/Series.module.css'
 import List from '@/components/List'
 import Layout from "@/components/Layout";
 import axios from 'axios';
-import { getMonthName } from '../utils'
+import { getMonthName } from '@/utils'
 
 const Series = ({ series }) => {
 
@@ -15,6 +15,7 @@ const Series = ({ series }) => {
                 <title>{`Mejores Series de ${month}: Listado Completo y Actualizado | TopDelMes`}</title>
                 <meta name="description" content={`Explora las mejores series de ${month} en nuestra lista completa y actualizada en TopDelMes.com. ¡Encuentra tus series favoritas y descubre nuevas!`} />
                 <meta name="keywords" content={`mejores series ${month}, series populares ${month}, series del mes ${month}`} />
+                <link rel="canonical" href="https://www.topdelmes.com/series" />
             </Head>
             <div className={styles.section} itemScope itemType="http://schema.org/ItemList">
                 <p className={styles.subtitle}>Las series mejor puntuadas durante el mes de {month}</p>

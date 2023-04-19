@@ -24,5 +24,6 @@
   font-size: var(--fs-13);
   font-weight: var(--fw-500);
   color: var(--white);
-  margin-bottom: 50px;
+  max-width: 900px;
+  margin: 0 auto 50px;
 }

@@ -61,3 +61,41 @@ export const getMonthNumber = (month) => {
 
   return monthNumber;
 }
+
+const generateUrls = (prefix, actualMonth, actualYear, months) => {
+  return Array.from({ length: 6 }, (_, i) => {
+    const index = (actualMonth - i + 12) % 12;
+    const year = actualMonth - i < 0 ? actualYear - 1 : actualYear;
+    return {
+      url: `/${prefix}/${months[index]}/${year}`,
+      month: months[index],
+      year: year,
+    };
+  });
+};
+
+export const getPreviousMonths = () => {
+  const months = [
+    "enero", "febrero", "marzo", "abril", "mayo", "junio",
+    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+  ];
+
+  const actualDate = new Date();
+  const actualMonth = actualDate.getMonth();
+  const actualYear = actualDate.getFullYear();
+
+  const movies = generateUrls("peliculas", actualMonth, actualYear, months);
+  const series = generateUrls("series", actualMonth, actualYear, months);
+
+  return { movies, series };
+};
+
+export const isCurrentMonthAndYear = ( year, month ) => {
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear().toString();
+  const currentMonth = currentDate.toLocaleString('default', { month: 'long' }).toLowerCase();
+
+  return year === currentYear && month.toLowerCase() === currentMonth;
+};
+
+

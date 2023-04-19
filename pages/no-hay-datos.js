@@ -16,8 +16,8 @@ const NoData = ({ series, movies }) => {
         <title>{`TopDelMes ${month}: Las 10 Películas y Series Más Populares del Mes`}</title>
         <meta name="description" content={`Descubre las 10 películas y series más populares de ${month} en TopDelMes.com. ¡Entérate de lo más visto y no te pierdas ninguna novedad!`} />
         <meta name="keywords" content={`Películas y series del mes, top 10, estrenos, mejores, ${month}`} />
+        <link rel="canonical" href={`https://www.topdelmes.com/no-hay-datos`} />
       </Head>
-
       <section className={styles.error}>
           <h1 className={styles.heading}>Vaya creo que te has equivocado</h1>
           <p>Lo siento pero no tenemos datos o la fecha no es correcta</p>

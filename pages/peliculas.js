@@ -6,7 +6,7 @@ import axios from 'axios';
 import { getMonthName } from '@/utils'
 
 const Movies = ({ movies }) => {
-  
+
     const month = getMonthName(new Date().getMonth());
 
     return (
@@ -15,6 +15,7 @@ const Movies = ({ movies }) => {
                 <title>{`Mejores Películas de ${month}: Listado Completo y Actualizado | TopDelMes`}</title>
                 <meta name="description" content={`Echa un vistazo a las mejores películas de ${month} en nuestra selección completa y actualizada en TopDelMes.com. ¡No te pierdas los últimos estrenos!`} />
                 <meta name="keywords" content={`mejores películas ${month}, películas populares ${month}, películas del mes ${month}`} />
+                <link rel="canonical" href="https://www.topdelmes.com/peliculas" />
             </Head>
             <div className={styles.section} itemScope itemType="http://schema.org/ItemList">
                 <p className={styles.subtitle}>Las películas mejor puntuadas durante el mes de {month}</p>
