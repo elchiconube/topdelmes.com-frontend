@@ -1,5 +1,4 @@
 .section {
-    background-image: url('/pattern.png');
     background-color: var(--rich-black-fogra-29);
     min-height: 30vh;
     background-size: 35%;
@@ -43,4 +42,11 @@
     color: var(--white);
     letter-spacing: 1px;
     font-size: var(--fs-9);
+    transition: var(--transition-1);
 }
+
+.multiple_list li a:hover{
+    color: var(--citrine);
+
+}
+
