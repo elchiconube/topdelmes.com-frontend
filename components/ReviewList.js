@@ -7,9 +7,9 @@ const ReviewList = ({ reviews }) => {
     return (
         <ul className={styles.list}>
             {reviews.map((review) => (
-                <li className={styles.item} itemScope itemType="http://schema.org/Article">
+                <li key={review.id} className={styles.item} itemScope itemType="http://schema.org/Article">
                     <article className={styles.article}>
-                        <figure>
+                        <figure style={{backgroundImage: `url("${review.attributes.cover_url}")`}}>
                             <a href={`/analisis/${review.attributes.slug}`} itemProp="url">
                                 <Image itemProp="image" src={review.attributes.cover_url} width={384} height={216} alt={`Análisis ${review.attributes.title}`} />
                             </a>
