@@ -1,0 +1,46 @@
+.list{
+  padding: 32px;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill,minmax(min(calc(200px + 12vmin), 100%), 1fr));
+  margin: 0 0 50px 0;
+}
+.article{
+  color: var(--gainsboro);
+  background: var(--gunmetal-1);
+  border-radius: 0 0 6px 6px;
+}
+
+.article figure {
+  position: relative;
+  background: var(--gunmetal-1);
+  aspect-ratio: 16 / 9;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: var(--transition-1);
+}
+
+.container{
+  padding: 16px;
+}
+
+.article img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.article h2 a{
+  color: var(--white);
+  font-size: var(--fs-5);
+  transition: var(--transition-1);
+}
+
+.article h2 a:hover{
+  color: var(--citrine);
+}
+
+.article time{
+  margin: 8px 0;
+  display: block;
+}

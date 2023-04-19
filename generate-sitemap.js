@@ -1,5 +1,8 @@
 const { SitemapStream, streamToPromise } = require("sitemap");
 const { createWriteStream } = require("fs");
+const axios = require("axios");
+require("dotenv").config();
+
 
 const currentDate = new Date();
 const currentYear = currentDate.getFullYear();
@@ -22,6 +25,7 @@ const months = [
 
 const pages = [
   { url: "/", priority: 1.0, changefreq: "daily" },
+  { url: "/analisis", priority: 0.8, changefreq: "daily" },
   { url: "/series", priority: 0.8, changefreq: "monthly" },
   { url: "/peliculas", priority: 0.8, changefreq: "monthly" },
 ];
@@ -40,12 +44,33 @@ for (let year = 1920; year <= currentYear; year++) {
   }
 }
 
-const sitemap = new SitemapStream({ hostname: "https://www.topdelmes.com" });
+async function fetchPostsAndGenerateSitemap() {
+  try {
 
-sitemap.pipe(createWriteStream("./public/sitemap.xml"));
+    const response = await axios.get(`${process.env.API_URL_POST}/posts`, {
+      headers: {
+        Authorization: `Bearer ${process.env.API_KEY_POST}`,
+      }
+    });
+    const posts = response.data.data;
 
-pages.forEach((page) => {
-  sitemap.write(page);
-});
+    posts.forEach((post) => {
+      const slug = post.attributes.slug;
+      pages.push({ url: `/analisis/${slug}`, priority: 0.8, changefreq: "daily" });
+    });
 
-sitemap.end();
+    const sitemap = new SitemapStream({ hostname: "https://www.topdelmes.com" });
+
+    sitemap.pipe(createWriteStream("./public/sitemap.xml"));
+
+    pages.forEach((page) => {
+      sitemap.write(page);
+    });
+
+    sitemap.end();
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+  }
+}
+
+fetchPostsAndGenerateSitemap();

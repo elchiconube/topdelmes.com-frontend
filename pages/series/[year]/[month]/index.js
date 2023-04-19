@@ -4,7 +4,8 @@ import styles from '@/styles/Series.module.css'
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import {validateYearAndMonth, getMonthNumber, isCurrentMonthAndYear} from '@/utils'
+import {validateYearAndMonth, getMonthNumber, isCurrentMonthAndYear, getPrevNextYearMonth} from '@/utils'
+import Link from "next/link";
 
 const Series = ({ year, month, series }) => {
 
@@ -13,6 +14,9 @@ const Series = ({ year, month, series }) => {
   if (isFallback) {
     return <div>Cargando...</div>;
   }
+
+  const {next, prev } = getPrevNextYearMonth(year, month, 'series');
+
 
   return (
     <Layout>
@@ -35,6 +39,10 @@ const Series = ({ year, month, series }) => {
           Si estás buscando nuevas series para ver o quieres saber cuáles son las más destacadas del mes, nuestra lista de las mejores series de {month} {year} es el recurso perfecto para ti. Explora nuestro ranking y descubre las series que están dando de qué hablar. ¡No esperes más y comienza a disfrutar de las mejores series del mes!
         </p>
         <List items={series} dataprop="TVSeries" />
+        <footer className={styles.footer}>
+          {prev && <Link href={`/series/${prev.year}/${prev.month}`}>Ver series de {prev.month} {prev.year}</Link>}
+          {next && <Link href={`/series/${next.year}/${next.month}`}>Ver series de {next.month} {next.year}</Link>}
+        </footer>
       </div>
     </Layout>
   );

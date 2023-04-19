@@ -1,3 +1,11 @@
+import { remark } from 'remark';
+import html from 'remark-html';
+
+export const markdownToHtml = (markdownString) => {
+  const result = remark().use(html).processSync(markdownString);
+  return result.toString();
+}
+
 export const getMonthName = (month) => {
   const date = new Date(2022, month);
   const monthName = new Intl.DateTimeFormat('es-ES', { month: 'long' }).format(date);
@@ -10,6 +18,36 @@ export const updatePosterUrl = (url) => {
   const newUrl = url.replace(pattern, newSuffix);
   return newUrl;
 }
+
+export const getPrevNextYearMonth = (yearStr, monthStr, type) => {
+  const MONTH_NAMES = [
+    'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+    'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+  ];
+
+  const year = parseInt(yearStr, 10);
+  const month = getMonthNumber(monthStr);
+  const isMovies = type === 'movies';
+  const isSeries = type === 'series';
+  const prevYear = month === 1 && isMovies ? year - 1 : year;
+  const nextYear = month === 12 && isSeries ? year + 1 : year;
+  const prevMonth = month === 1 ? 12 : month - 1;
+  const nextMonth = month === 12 ? 1 : month + 1;
+  const prevMonthDate = new Date(prevYear, prevMonth - 1, 1);
+  const nextMonthDate = new Date(nextYear, nextMonth - 1, 1);
+  const now = new Date();
+
+  const prev = prevMonthDate.getFullYear() >= (isMovies ? 1920 : 1990)
+      ? { year: prevMonthDate.getFullYear(), month: MONTH_NAMES[prevMonthDate.getMonth()] }
+      : null;
+
+  const next = nextMonthDate <= now
+      ? { year: nextMonthDate.getFullYear(), month: MONTH_NAMES[nextMonthDate.getMonth()] }
+      : null;
+
+  return { prev, next };
+};
+
 
 export const formatVotes = (num) => {
   if (num >= 1000) {
@@ -99,3 +137,9 @@ export const isCurrentMonthAndYear = ( year, month ) => {
 };
 
 
+export const postFormatDate = (dateString) => {
+  const date = new Date(dateString);
+  const options = { month: 'long', day: 'numeric', year: 'numeric' };
+  const formattedDate = date.toLocaleDateString('es-ES', options);
+  return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+};

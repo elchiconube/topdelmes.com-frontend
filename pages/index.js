@@ -7,8 +7,9 @@ import axios from 'axios';
 import { getMonthName } from '@/utils'
 import Link from 'next/link';
 import Previous from "@/components/Previous";
+import ReviewList from "@/components/ReviewList";
 
-const Home = ({ series, movies }) => {
+const Home = ({ series, movies, reviews }) => {
 
   const month = getMonthName(new Date().getMonth());
 
@@ -36,7 +37,17 @@ const Home = ({ series, movies }) => {
           <Link className={styles.cta} href="/series">Ver ranking completo de series</Link>
         </footer>
       </section>
-      <TimeMachine />
+        <section className={styles.section}>
+            <header>
+                <p className={styles.subtitle}>Últimos análisis del mes de {month}</p>
+                <h2 className={styles.title}>Análisis de las mejores películas y series del mes</h2>
+            </header>
+            <ReviewList reviews={reviews} />
+            <footer className={styles.section_footer}>
+                <Link className={styles.cta} href="/analisis">Ver todos los análisis</Link>
+            </footer>
+        </section>
+
       <section className={styles.section}>
         <header>
           <p className={styles.subtitle}>Las películas mejor puntuadas durante el mes de {month}</p>
@@ -48,6 +59,8 @@ const Home = ({ series, movies }) => {
         </footer>
       </section>
       <Previous />
+        <TimeMachine />
+
     </Layout>
   )
 }
@@ -55,18 +68,24 @@ const Home = ({ series, movies }) => {
 
 export async function getServerSideProps() {
   try {
-    const [seriesResponse, moviesResponse] = await Promise.all([
+    const [seriesResponse, moviesResponse, reviewsResponse] = await Promise.all([
       axios.get(`${process.env.NEXT_PUBLIC_API_URL}/series?api_key=${process.env.NEXT_PUBLIC_API_KEY}`),
       axios.get(`${process.env.NEXT_PUBLIC_API_URL}/movies?api_key=${process.env.NEXT_PUBLIC_API_KEY}`),
+      axios.get(`${process.env.NEXT_PUBLIC_API_URL_POST}/posts`, {
+        headers: {
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY_POST}`,
+        }
+      })
     ]);
 
-    const series = seriesResponse.data.slice(0, 10);
-    const movies = moviesResponse.data.slice(0, 10);
+      const series = seriesResponse.data.slice(0, 10);
+      const movies = moviesResponse.data.slice(0, 10);
+      const reviews = reviewsResponse.data.data.slice(0, 10);
 
-    return { props: { series, movies } };
+    return { props: { series, movies, reviews } };
   } catch (error) {
     console.error('Error al obtener los datos:', error);
-    return { props: { series: [], movies: [] } };
+    return { props: { series: [], movies: [], reviews:[] } };
   }
 }
 

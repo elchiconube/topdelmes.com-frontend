@@ -4,7 +4,8 @@ import styles from '@/styles/Movies.module.css'
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import {validateYearAndMonth, getMonthNumber, isCurrentMonthAndYear} from '@/utils'
+import {validateYearAndMonth, getMonthNumber, isCurrentMonthAndYear, getPrevNextYearMonth} from '@/utils'
+import Link from "next/link";
 
 const Peliculas = ({ year, month, movies }) => {
 
@@ -13,6 +14,8 @@ const Peliculas = ({ year, month, movies }) => {
   if (isFallback) {
     return <div>Cargando...</div>;
   }
+
+  const {next, prev } = getPrevNextYearMonth(year, month, 'movies');
 
   return (
     <Layout>
@@ -35,6 +38,10 @@ const Peliculas = ({ year, month, movies }) => {
           Si estás buscando nuevas películas para ver o quieres saber cuáles son las más destacadas del mes, nuestra lista de las mejores películas de {month} {year} es el recurso perfecto para ti. Explora nuestro ranking y descubre las películas que están captando la atención del público. ¡No esperes más y comienza a disfrutar de las mejores películas del mes!
         </p>
         <List items={movies} dataprop="Movie" />
+        <footer className={styles.footer}>
+          {prev && <Link href={`/peliculas/${prev.year}/${prev.month}`}>Ver películas de {prev.month} {prev.year}</Link>}
+          {next && <Link href={`/peliculas/${next.year}/${next.month}`}>Ver películas de {next.month} {next.year}</Link>}
+        </footer>
       </div>
     </Layout>
   );

@@ -26,6 +26,11 @@ const Navbar = () => {
                             Peliculas
                         </Link>
                     </li>
+                    <li>
+                        <Link href="/analisis" className={styles.navLink}>
+                            Análisis
+                        </Link>
+                    </li>
                 </ul>
             </div>
         </nav>
