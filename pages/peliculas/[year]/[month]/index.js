@@ -74,7 +74,7 @@ export async function getServerSideProps(context) {
 
     const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/movies?api_key=${process.env.NEXT_PUBLIC_API_KEY}&month=${monthNumber}&year=${year}`);
 
-    const movies = response.data.slice(0, 10);
+    const movies = response.data.filter(item => item.rating !== 0).slice(0, 10);
 
     return { props: { movies, year, month, } };
   } catch (error) {
