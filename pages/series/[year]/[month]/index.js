@@ -43,7 +43,6 @@ const Series = ({ year, month, series }) => {
 export async function getServerSideProps(context) {
   const { year, month } = context.params;
 
-  console.log({year, month})
   try {
 
     if(isCurrentMonthAndYear(year, month)){
