@@ -34,7 +34,7 @@ export async function getServerSideProps() {
 
         const moviesResponse = response.data;
 
-        const movies = moviesResponse.data.slice(0, 49);
+        const movies = moviesResponse.slice(0, 50);
 
         return { props: { movies } };
     } catch (error) {

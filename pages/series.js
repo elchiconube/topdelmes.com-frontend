@@ -34,7 +34,7 @@ export async function getServerSideProps() {
 
         const seriesResponse = response.data;
 
-        const series = seriesResponse.data.slice(0, 49);
+        const series = seriesResponse.slice(0, 50);
 
         return { props: { series } };
     } catch (error) {
