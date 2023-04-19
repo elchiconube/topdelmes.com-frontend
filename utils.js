@@ -93,7 +93,7 @@ export const getPreviousMonths = () => {
 export const isCurrentMonthAndYear = ( year, month ) => {
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear().toString();
-  const currentMonth = currentDate.toLocaleString('default', { month: 'long' }).toLowerCase();
+  const currentMonth = currentDate.toLocaleString('es-ES', { month: 'long' }).toLowerCase();
 
   return year === currentYear && month.toLowerCase() === currentMonth;
 };

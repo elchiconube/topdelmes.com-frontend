@@ -43,16 +43,18 @@ const Series = ({ year, month, series }) => {
 export async function getServerSideProps(context) {
   const { year, month } = context.params;
 
+
   try {
 
     if(isCurrentMonthAndYear(year, month)){
-        return {
-            redirect: {
-            destination: '/series',
-            permanent: false,
-            },
-        };
+      return {
+        redirect: {
+          destination: '/series',
+          permanent: false,
+        },
+      };
     }
+
 
     if (!validateYearAndMonth(year, month, 'series')) {
       return {
