@@ -27,31 +27,3 @@
   max-width: 900px;
   margin: 0 auto 50px;
 }
-
-.footer{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  padding-bottom: 32px;
-}
-
-.footer a{
-  color: var(--white);
-  font-size: var(--fs-11);
-  font-weight: var(--fw-700);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 30px;
-  border: 2px solid var(--citrine);
-  border-radius: 50px;
-  transition: var(--transition-1);
-}
-
-.footer a:hover {
-  background: var(--citrine);
-  color: var(--xiketic);
-}

@@ -14,9 +14,9 @@
    --white: hsl(0, 100%, 100%);
    --black: hsl(0, 0%, 0%);
    --jet: hsl(0, 0%, 20%);
- 
+
    --ff-poppins: 'Poppins', sans-serif;
- 
+
    --fs-1: 36px;
    --fs-2: 32px;
    --fs-3: 30px;
@@ -29,21 +29,25 @@
    --fs-10: 13px;
    --fs-11: 12px;
    --fs-12: 11px;
- 
+
    --fw-500: 500;
    --fw-700: 700;
- 
+
    --transition-1: 0.15s ease;
    --transition-2: 0.25s ease-in;
- 
+
    --section-padding: 100px;
- 
+
 }
 
 *, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+i{
+    font-style: normal;
 }
 
 li { list-style: none; }

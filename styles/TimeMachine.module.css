@@ -1,5 +1,6 @@
 
-.header{
+
+.section {
   background-image: url('/pattern.png');
   background-color: var(--raisin-black);
   min-height: 30vh;
@@ -7,55 +8,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 50px 0;
+  border-top: 1px solid var(--gunmetal-2);
 }
 
-.header > div {
-  max-width: 700px;
+.section > div {
+  max-width: 1200px;
   margin: 0 auto;
-  color: var(--gainsboro);
-  font-size: var(--fs-7);
 }
 
-.error{
-  padding: 40px;
-  color: var(--gainsboro);
-  max-width: 700px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.error h1 {
-  margin-bottom: 21px;
-}
-
-.error p,
-.error ul{
-  margin-bottom: 12px;
-}
-
-.error a {
-  color: var(--gainsboro);
-  text-decoration: underline;
-  font-size: var(--fs-7);
-  transition: var(--transition-1);
-}
-
-.error a:hover {
-  color: var(--citrine);
-  text-decoration: underline;
-  font-size: var(--fs-7);
-}
-
-.heading{
-  text-align: center;
-  font-size: var(--fs-1);
+.section > div > p{
   color: var(--white);
-  line-height: 1.2;
-  margin-bottom: 8px;
+  letter-spacing: 1px;
+  margin-bottom: 21px;
+  text-align: center;
 }
 
 .title{
-  margin-bottom: 50px;
+  margin-bottom: 21px;
   text-align: center;
   font-size: var(--fs-2);
   color: var(--white);
@@ -72,33 +42,29 @@
   text-align: center;
 }
 
-.section {
-  padding: 32px 0 0 0;
-  border-top: 1px solid var(--gunmetal-2);
-}
-
-
-.section_footer{
+.actions {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 40px;
-  border-bottom: 1px solid var(--black)
+  gap: 16px;
 }
 
+
 .cta{
+  max-width: 360px;
   color: var(--white);
   font-size: var(--fs-11);
   font-weight: var(--fw-700);
   text-transform: uppercase;
   letter-spacing: 2px;
-  display: flex;
-  align-items: center;
+  display: inline-block;
   gap: 10px;
   padding: 16px 30px;
   border: 2px solid var(--citrine);
   border-radius: 50px;
   transition: var(--transition-1);
+  white-space: nowrap;
+
 }
 
 .cta:hover {

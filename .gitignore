@@ -1,9 +1,11 @@
 node_modules
 .next
+.env
 .env.local
 .yarn.lock
 package-lock.json
 .DS_Store
+
 # Sentry
 .sentryclirc
 
