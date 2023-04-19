@@ -32,7 +32,9 @@ export async function getServerSideProps() {
     try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/series?api_key=${process.env.NEXT_PUBLIC_API_KEY}`);
 
-        const series = response.data;
+        const seriesResponse = response.data;
+
+        const series = seriesResponse.data.slice(0, 49);
 
         return { props: { series } };
     } catch (error) {
