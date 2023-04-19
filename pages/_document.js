@@ -6,6 +6,8 @@ export default function Document() {
     <Html lang="es">
       <Head>
         <link rel="shortcut icon" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
         <Script
           id="Adsense-id"
           data-ad-client="ca-pub-0417095919520461"

@@ -23,8 +23,8 @@ const Peliculas = ({ year, month, movies }) => {
         <link rel="canonical" href={`https://www.topdelmes.com/peliculas/${year}/${month}`} />
       </Head>
       <div className={styles.section} itemScope itemType="http://schema.org/ItemList">
-        <p className={styles.subtitle}>Las películas mejor puntuadas durante el mes de {month} de {year}</p>
         <h1 className={styles.title}>Las mejores películas de {month} {year}: Top 10 del mes</h1>
+        <h2 className={styles.subtitle}>Las películas mejor puntuadas durante el mes de {month} de {year}</h2>
         <p className={styles.description}>
           Descubre las 10 películas más populares y mejor valoradas del mes de {month} {year} en nuestra selección mensual. Este ranking te mantendrá al día sobre las últimas tendencias y los estrenos más destacados en el mundo del cine. No te pierdas ninguna novedad y disfruta de las mejores películas del momento.
         </p>

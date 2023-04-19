@@ -18,8 +18,8 @@ const Series = ({ series }) => {
                 <link rel="canonical" href="https://www.topdelmes.com/series" />
             </Head>
             <div className={styles.section} itemScope itemType="http://schema.org/ItemList">
-                <p className={styles.subtitle}>Las series mejor puntuadas durante el mes de {month}</p>
                 <h1 className={styles.title}>Ranking de series</h1>
+                <h2 className={styles.subtitle}>Las series más populares y mejor puntuadas del mes</h2>
                 <p className={styles.description}>En TopDelMes, nos esforzamos por mantenerte al día con las series más populares y emocionantes del momento. Nuestra lista de las mejores series del mes se actualiza regularmente para asegurarnos de que siempre estés informado sobre las novedades y las series que no puedes perderte.</p>
                 <List items={series} dataprop="TVSeries" />
             </div>

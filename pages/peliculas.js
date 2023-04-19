@@ -18,8 +18,8 @@ const Movies = ({ movies }) => {
                 <link rel="canonical" href="https://www.topdelmes.com/peliculas" />
             </Head>
             <div className={styles.section} itemScope itemType="http://schema.org/ItemList">
-                <p className={styles.subtitle}>Las películas mejor puntuadas durante el mes de {month}</p>
                 <h1 className={styles.title}>Ranking de películas</h1>
+                <h2 className={styles.subtitle}>Las películas más populares y mejor puntuadas del mes</h2>
                 <p className={styles.description}>Aquí, en TopDelMes, nos encanta el cine y queremos compartir contigo las mejores películas del mes. Nuestra selección incluye los estrenos más recientes y las películas que están haciendo historia en la taquilla. Consulta nuestra lista actualizada y encuentra tu próxima película favorita.</p>
                 <List items={movies} dataprop="Movie" />
             </div>

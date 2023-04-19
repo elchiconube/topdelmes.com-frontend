@@ -23,8 +23,8 @@ const Series = ({ year, month, series }) => {
         <link rel="canonical" href={`https://www.topdelmes.com/series/${year}/${month}`} />
       </Head>
       <div className={styles.section} itemScope itemType="http://schema.org/ItemList">
-        <p className={styles.subtitle}>Las series mejor puntuadas durante el mes de {month} de {year}</p>
         <h1 className={styles.title}>Las mejores series de {month} {year}: Top 10 del mes</h1>
+        <h2 className={styles.subtitle}>Las series mejor puntuadas durante el mes de {month} de {year}</h2>
         <p className={styles.description}>
           Descubre las 10 series más populares y mejor valoradas del mes de {month} {year} en nuestra selección mensual. Este ranking te ayudará a mantenerte informado sobre las últimas tendencias y los estrenos más destacados en el mundo de las series de televisión. No te pierdas ninguna novedad y disfruta de las mejores series del momento.
         </p>
