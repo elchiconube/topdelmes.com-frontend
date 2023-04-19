@@ -26,7 +26,7 @@ const Home = ({ series, movies }) => {
           <p>Bienvenido a TopDelMes, tu fuente de información sobre las películas y series más populares del mes actual. Aquí encontrarás las últimas tendencias y los estrenos que están arrasando en el mundo del cine y la televisión.</p>
         </div>
       </header>
-      <section className={styles.section} itemScope itemType="http://schema.org/ItemList">
+      <section className={styles.section}>
         <header>
           <p className={styles.subtitle}>Las series mejor puntuadas durante el mes de {month}</p>
           <h2 className={styles.title}>Top 10 de series</h2>
@@ -37,7 +37,7 @@ const Home = ({ series, movies }) => {
         </footer>
       </section>
       <TimeMachine />
-      <section className={styles.section} itemScope itemType="http://schema.org/ItemList">
+      <section className={styles.section}>
         <header>
           <p className={styles.subtitle}>Las películas mejor puntuadas durante el mes de {month}</p>
           <h2 className={styles.title}>Top 10 de películas</h2>
