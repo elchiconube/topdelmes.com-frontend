@@ -5,8 +5,8 @@ const List = ({ items, dataprop }) => {
     return (
         <ul className={styles.container} itemScope itemType="http://schema.org/ItemList">
             {items.map((item, position) => (
-                <li key={item.id} itemProp="itemListElement" itemScope itemType={`http://schema.org/${dataprop}`} itemProp="position" content={position}>
-                    <Card position={position + 1} item={item} />
+                <li key={item.id} itemProp="itemListElement" itemScope itemType={`http://schema.org/${dataprop}`} itemProp="position" content={position + 1}>
+                    <Card item={item} />
                 </li>
             ))}
         </ul>)
