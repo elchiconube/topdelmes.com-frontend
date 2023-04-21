@@ -1,5 +1,5 @@
 import { Poppins } from "next/font/google";
-import Analytics from "next/analytics";
+import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
 import "@/styles/globals.css";
 
