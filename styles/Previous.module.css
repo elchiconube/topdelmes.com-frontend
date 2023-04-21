@@ -29,7 +29,7 @@
     margin: 0 auto;
     text-align: center;
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(min(calc(300px + 12vmin), 100%), 1fr));
+    grid-template-columns: repeat(auto-fit,minmax(min(calc(300px + 12vmin), 100%), 1fr));
     gap: 32px;
 }
 
