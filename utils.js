@@ -1,34 +1,46 @@
-import { remark } from 'remark';
-import html from 'remark-html';
+import { remark } from "remark";
+import html from "remark-html";
+
+const MONTH_NAMES = [
+  "enero",
+  "febrero",
+  "marzo",
+  "abril",
+  "mayo",
+  "junio",
+  "julio",
+  "agosto",
+  "septiembre",
+  "octubre",
+  "noviembre",
+  "diciembre",
+];
 
 export const markdownToHtml = (markdownString) => {
   const result = remark().use(html).processSync(markdownString);
   return result.toString();
-}
+};
 
 export const getMonthName = (month) => {
   const date = new Date(2022, month);
-  const monthName = new Intl.DateTimeFormat('es-ES', { month: 'long' }).format(date);
+  const monthName = new Intl.DateTimeFormat("es-ES", { month: "long" }).format(
+    date
+  );
   return monthName;
-}
+};
 
 export const updatePosterUrl = (url) => {
   const pattern = /_V1_.*\.jpg/;
   const newSuffix = "_V1_SY1000_CR0,0,674,1000_AL_.jpg";
   const newUrl = url.replace(pattern, newSuffix);
   return newUrl;
-}
+};
 
-export const getPrevNextYearMonth = (yearStr, monthStr, type) => {
-  const MONTH_NAMES = [
-    'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-    'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
-  ];
-
+export const getPrevNextYearMonth = (yearStr, type) => {
   const year = parseInt(yearStr, 10);
   const month = getMonthNumber(monthStr);
-  const isMovies = type === 'movies';
-  const isSeries = type === 'series';
+  const isMovies = type === "movies";
+  const isSeries = type === "series";
   const prevYear = month === 1 && isMovies ? year - 1 : year;
   const nextYear = month === 12 && isSeries ? year + 1 : year;
   const prevMonth = month === 1 ? 12 : month - 1;
@@ -37,42 +49,59 @@ export const getPrevNextYearMonth = (yearStr, monthStr, type) => {
   const nextMonthDate = new Date(nextYear, nextMonth - 1, 1);
   const now = new Date();
 
-  const prev = prevMonthDate.getFullYear() >= (isMovies ? 1920 : 1990)
-      ? { year: prevMonthDate.getFullYear(), month: MONTH_NAMES[prevMonthDate.getMonth()] }
+  const prev =
+    prevMonthDate.getFullYear() >= (isMovies ? 1920 : 1990)
+      ? {
+          year: prevMonthDate.getFullYear(),
+          month: MONTH_NAMES[prevMonthDate.getMonth()],
+        }
       : null;
 
-  const next = nextMonthDate <= now
-      ? { year: nextMonthDate.getFullYear(), month: MONTH_NAMES[nextMonthDate.getMonth()] }
+  const next =
+    nextMonthDate <= now
+      ? {
+          year: nextMonthDate.getFullYear(),
+          month: MONTH_NAMES[nextMonthDate.getMonth()],
+        }
       : null;
 
   return { prev, next };
 };
 
+export const getAdjacentYears = (yearStr, type) => {
+  const year = parseInt(yearStr, 10);
+  if (isNaN(year)) {
+    throw new Error("El año proporcionado no es válido.");
+  }
+
+  const minYear = type === "series" ? 1990 : 1920;
+
+  const prevYear = year - 1 >= minYear ? year - 1 : null;
+  const nextYear = year + 1;
+
+  return {
+    prev: prevYear,
+    next: nextYear,
+  };
+};
 
 export const formatVotes = (num) => {
   if (num >= 1000) {
-    return (num / 1000).toFixed(1) + 'K';
+    return (num / 1000).toFixed(1) + "K";
   } else {
     return num.toString();
   }
-}
+};
 
-const isValidMonth = (month) => {
-  const validMonths = [
-    "enero", "febrero", "marzo", "abril", "mayo", "junio",
-    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
-  ];
-  return validMonths.includes(month);
-}
-
-const isValidYear = (year, type) => {
-  const firstYear = type === 'movies' ? 1920 : 1990;
+export const isValidYear = (year, type) => {
+  const firstYear = type === "movies" ? 1920 : 1990;
   const currentYear = new Date().getFullYear();
   const parsedYear = parseInt(year);
   return parsedYear >= firstYear && parsedYear <= currentYear;
-}
+};
 
-export const validateYearAndMonth = (year, month, type) => isValidYear(year, type) && isValidMonth(month);
+export const validateYearAndMonth = (year, month, type) =>
+  isValidYear(year, type) && getMonthNumber(month) !== undefined;
 
 export const getMonthNumber = (month) => {
   const months = {
@@ -87,7 +116,7 @@ export const getMonthNumber = (month) => {
     septiembre: 9,
     octubre: 10,
     noviembre: 11,
-    diciembre: 12
+    diciembre: 12,
   };
 
   const lowercaseMonth = month.toLowerCase();
@@ -98,7 +127,7 @@ export const getMonthNumber = (month) => {
   }
 
   return monthNumber;
-}
+};
 
 const generateUrls = (prefix, actualMonth, actualYear, months) => {
   return Array.from({ length: 6 }, (_, i) => {
@@ -113,33 +142,69 @@ const generateUrls = (prefix, actualMonth, actualYear, months) => {
 };
 
 export const getPreviousMonths = () => {
-  const months = [
-    "enero", "febrero", "marzo", "abril", "mayo", "junio",
-    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
-  ];
-
   const actualDate = new Date();
   const actualMonth = actualDate.getMonth();
   const actualYear = actualDate.getFullYear();
+  const previousMonth = actualMonth === 0 ? 11 : actualMonth - 1;
+  const previousYear = actualMonth === 0 ? actualYear - 1 : actualYear;
 
-  const movies = generateUrls("peliculas", actualMonth, actualYear, months);
-  const series = generateUrls("series", actualMonth, actualYear, months);
+  const movies = generateUrls(
+    "peliculas",
+    previousMonth,
+    previousYear,
+    MONTH_NAMES
+  );
+  const series = generateUrls(
+    "series",
+    previousMonth,
+    previousYear,
+    MONTH_NAMES
+  );
 
   return { movies, series };
 };
 
-export const isCurrentMonthAndYear = ( year, month ) => {
+export const getPreviousYears = () => {
+  const currentYear = new Date().getFullYear();
+  const types = ["series", "movies"];
+
+  const previousYears = types.reduce((result, type) => {
+    result[type] = Array.from({ length: 10 }, (_, i) => {
+      const year = currentYear - i - 1;
+      return {
+        url: `/mejores/${type}/${year}`,
+        year: year,
+      };
+    });
+    return result;
+  }, {});
+
+  return previousYears;
+};
+
+export const isCurrentMonthAndYear = (year, month) => {
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear().toString();
-  const currentMonth = currentDate.toLocaleString('es-ES', { month: 'long' }).toLowerCase();
+  const currentMonth = currentDate
+    .toLocaleString("es-ES", { month: "long" })
+    .toLowerCase();
 
   return year === currentYear && month.toLowerCase() === currentMonth;
 };
 
-
 export const postFormatDate = (dateString) => {
   const date = new Date(dateString);
-  const options = { month: 'long', day: 'numeric', year: 'numeric' };
-  const formattedDate = date.toLocaleDateString('es-ES', options);
+  const options = { month: "long", day: "numeric", year: "numeric" };
+  const formattedDate = date.toLocaleDateString("es-ES", options);
   return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+};
+
+export const isCurrentYear = (yearStr) => {
+  const year = parseInt(yearStr, 10);
+  if (isNaN(year)) {
+    throw new Error("El año proporcionado no es válido.");
+  }
+
+  const currentYear = new Date().getFullYear();
+  return year === currentYear;
 };

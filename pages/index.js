@@ -8,6 +8,7 @@ import { getMonthName } from "@/utils";
 import Link from "next/link";
 import Previous from "@/components/Previous";
 import ReviewList from "@/components/ReviewList";
+import PreviousYears from "@/components/PreviousYears";
 
 const Home = ({ series, movies, reviews }) => {
   const month = getMonthName(new Date().getMonth());
@@ -40,14 +41,17 @@ const Home = ({ series, movies, reviews }) => {
       <section className={styles.section}>
         <header>
           <p className={styles.subtitle}>
-            Las series mejor puntuadas durante el mes de {month}
+            Las series mejor valoradas durante el mes de {month}
           </p>
           <h2 className={styles.title}>Top 10 de series</h2>
         </header>
         <List items={series} dataprop="TVSeries" />
         <footer className={styles.section_footer}>
           <Link className={styles.cta} href="/series">
-            Ver ranking completo de series
+            Mejores estrenos de series de este mes
+          </Link>
+          <Link className={styles.cta} href="/mejores/series/2023">
+            Mejores series del año 2023
           </Link>
         </footer>
       </section>
@@ -62,7 +66,10 @@ const Home = ({ series, movies, reviews }) => {
         <List items={movies} dataprop="Movie" />
         <footer className={styles.section_footer}>
           <Link className={styles.cta} href="/peliculas">
-            Ver ranking completo de películas
+            Mejores estrenos de películas de este mes
+          </Link>
+          <Link className={styles.cta} href="/mejores/peliculas/2023">
+            Mejores películas del año 2023
           </Link>
         </footer>
       </section>
@@ -80,6 +87,7 @@ const Home = ({ series, movies, reviews }) => {
           </Link>
         </footer>
       </section>
+      <PreviousYears />
       <Previous />
       <TimeMachine />
     </Layout>
