@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getPreviousMonths, getPreviousYears } from "@/utils";
 
 const PreviousYears = () => {
-  const { series, movies } = getPreviousYears("series");
+  const { series, peliculas } = getPreviousYears("series");
 
   return (
     <section className={styles.section}>
@@ -31,7 +31,7 @@ const PreviousYears = () => {
         <div>
           <h3>Películas mejor valoradas por año</h3>
           <ul>
-            {movies.map(({ url, year }) => (
+            {peliculas.map(({ url, year }) => (
               <li key={year}>
                 <Link href={url}>
                   Las mejores películas estrenadas en {year}
