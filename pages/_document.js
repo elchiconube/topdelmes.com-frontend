@@ -1,12 +1,11 @@
-import { Html, Head, Main, NextScript } from 'next/document'
-import Script from 'next/script'
+import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
 
 export default function Document() {
   return (
     <Html lang="es">
       <Head>
-        <link rel="shortcut icon" href="/favicon.svg" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="shortcut icon" href="/favicon.ico" />
 
         <Script
           id="Adsense-id"
@@ -21,5 +20,5 @@ export default function Document() {
         <NextScript />
       </body>
     </Html>
-  )
+  );
 }

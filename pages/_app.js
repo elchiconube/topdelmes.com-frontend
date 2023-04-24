@@ -1,5 +1,6 @@
 import { Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import Head from "next/head";
 import Script from "next/script";
 import "@/styles/globals.css";
 
@@ -12,15 +13,17 @@ const poppins = Poppins({
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <Script
-        strategy="afterInteractive"
-        src="https://www.googletagmanager.com/gtag/js?id=G-NP9L1106X4"
-      />
-      <Script
-        id="google-analytics"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-NP9L1106X4"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -28,8 +31,10 @@ export default function App({ Component, pageProps }) {
             page_path: window.location.pathname,
             });
             `,
-        }}
-      />
+          }}
+        />
+      </Head>
+
       <style jsx global>{`
         html {
           font-family: ${poppins.style.fontFamily};
