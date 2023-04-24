@@ -208,3 +208,21 @@ export const isCurrentYear = (yearStr) => {
   const currentYear = new Date().getFullYear();
   return year === currentYear;
 };
+
+export const sortByField = (field, array, ascending = true) => {
+  return array.sort((a, b) => {
+    const valueA = a.attributes[field];
+    const valueB = b.attributes[field];
+
+    if (field === "updatedAt" || field === "publishedAt") {
+      const dateA = new Date(valueA);
+      const dateB = new Date(valueB);
+
+      return ascending ? dateA - dateB : dateB - dateA;
+    } else {
+      return ascending
+        ? valueA.localeCompare(valueB)
+        : valueB.localeCompare(valueA);
+    }
+  });
+};
