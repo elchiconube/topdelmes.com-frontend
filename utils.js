@@ -36,7 +36,7 @@ export const updatePosterUrl = (url) => {
   return newUrl;
 };
 
-export const getPrevNextYearMonth = (yearStr, type) => {
+export const getPrevNextYearMonth = (yearStr, monthStr, type) => {
   const year = parseInt(yearStr, 10);
   const month = getMonthNumber(monthStr);
   const isMovies = type === "movies";
