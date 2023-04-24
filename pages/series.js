@@ -5,6 +5,7 @@ import Layout from "@/components/Layout";
 import axios from "axios";
 import { getMonthName } from "@/utils";
 import Previous from "@/components/Previous";
+import PreviousYears from "@/components/PreviousYears";
 
 const Series = ({ series }) => {
   const month = getMonthName(new Date().getMonth());
@@ -42,6 +43,7 @@ const Series = ({ series }) => {
         <List items={series} dataprop="TVSeries" />
       </div>
       <Previous type={"series"} />
+      <PreviousYears />
     </Layout>
   );
 };

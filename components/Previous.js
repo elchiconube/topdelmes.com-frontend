@@ -21,7 +21,7 @@ const Previous = ({ type = false }) => {
               {series.map(({ url, month, year }) => (
                 <li key={month}>
                   <Link href={url}>
-                    Las series mejor valoradas en {month} de {year}
+                    Las mejores series estrenadas en {month} de {year}
                   </Link>
                 </li>
               ))}
@@ -35,7 +35,7 @@ const Previous = ({ type = false }) => {
               {movies.map(({ url, month, year }) => (
                 <li key={month}>
                   <Link href={url}>
-                    Las películas mejor valoradas en {month} de {year}
+                    Las mejores películas estrenadas {month} de {year}
                   </Link>
                 </li>
               ))}

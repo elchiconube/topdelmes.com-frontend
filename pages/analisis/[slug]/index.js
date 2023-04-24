@@ -29,7 +29,7 @@ const Review = ({ review }) => {
         />
         <meta
           name="keywords"
-          content={`análisis ${review.attributes.title}, crítica ${review.attributes.title}, reseña ${review.attributes.title}, serie ${review.attributes.title}, comedia, tribunal, opinión ${review.attributes.title}, calificación ${review.attributes.title}, TopDelMes`}
+          content={`análisis ${review.attributes.title}, crítica ${review.attributes.title}, reseña ${review.attributes.title}, serie ${review.attributes.title}, comedia, tribunal, opinión ${review.attributes.title}, calificación ${review.attributes.title}, imdb`}
         />
         <link
           rel="canonical"
