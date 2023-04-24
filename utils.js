@@ -166,7 +166,7 @@ export const getPreviousMonths = () => {
 
 export const getPreviousYears = () => {
   const currentYear = new Date().getFullYear();
-  const types = ["series", "movies"];
+  const types = ["series", "peliculas"];
 
   const previousYears = types.reduce((result, type) => {
     result[type] = Array.from({ length: 10 }, (_, i) => {
