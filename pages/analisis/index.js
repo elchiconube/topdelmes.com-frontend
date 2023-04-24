@@ -60,7 +60,7 @@ export async function getServerSideProps() {
       }
     );
 
-    const reviews = response.data.data;
+    const reviews = response.data.data.sort((a, b) => {});
 
     return { props: { reviews } };
   } catch (error) {
