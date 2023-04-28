@@ -5,7 +5,6 @@ import { postFormatDate, sortByField } from "@/utils";
 const ReviewList = ({ reviews = [] }) => {
   const items = sortByField("publishedAt", reviews, false);
 
-  console.log({ items });
   return (
     <ul className={styles.list}>
       {items.map((review) => (
@@ -34,7 +33,7 @@ const ReviewList = ({ reviews = [] }) => {
             <div className={styles.container}>
               <h2 itemProp="headline">
                 <a href={`/analisis/${review.attributes.slug}`}>
-                  {review.attributes.title}
+                  Análisis{review.attributes.title}
                 </a>
               </h2>
               <time

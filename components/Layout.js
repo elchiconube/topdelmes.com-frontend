@@ -1,16 +1,16 @@
-import Footer from './Footer'
-import Navbar from './NavBar'
+import Footer from "./Footer";
+import Header from "./Header";
 
-import styles from '../styles/Layout.module.css'
+import styles from "../styles/Layout.module.css";
 
 const Layout = ({ children }) => {
-    return (
-        <div className={styles.layout}>
-            <Navbar />
-            <main className={styles.main}>{children}</main>
-            <Footer />
-        </div>
-    )
-}
+  return (
+    <div className={styles.layout}>
+      <Header />
+      <main className={styles.main}>{children}</main>
+      <Footer />
+    </div>
+  );
+};
 
-export default Layout
+export default Layout;

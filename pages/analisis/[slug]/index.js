@@ -116,6 +116,16 @@ const Review = ({ review }) => {
           className={styles.body}
           dangerouslySetInnerHTML={{ __html: body }}
         />
+        <p className={styles.actions}>
+          {" "}
+          <Link
+            href={"/analisis"}
+            className={styles.cta}
+            title={"Accede a todos los análisis"}
+          >
+            Ver más análisis
+          </Link>
+        </p>
         <YoutubeVideo url={review.attributes.trailer_url} />
       </article>
     </Layout>
