@@ -5,16 +5,13 @@
   background-color: var(--raisin-black);
   min-height: 30vh;
   background-size: 35%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 50px 0;
-  border-top: 1px solid var(--gunmetal-2);
 }
 
 .section > div {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 32px;
 }
 
 .section > div > p{
@@ -44,6 +41,7 @@
 
 .actions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 16px;
@@ -52,6 +50,8 @@
 
 .cta{
   max-width: 360px;
+  white-space: nowrap;
+
   color: var(--white);
   font-size: var(--fs-11);
   font-weight: var(--fw-700);
