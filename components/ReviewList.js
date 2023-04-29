@@ -33,7 +33,7 @@ const ReviewList = ({ reviews = [] }) => {
             <div className={styles.container}>
               <h2 itemProp="headline">
                 <a href={`/analisis/${review.attributes.slug}`}>
-                  Análisis{review.attributes.title}
+                  Análisis {review.attributes.title}
                 </a>
               </h2>
               <time
