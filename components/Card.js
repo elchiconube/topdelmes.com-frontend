@@ -5,9 +5,9 @@ import imdbLogo from "../public/imdb-logo.png";
 import metascoreLogo from "../public/metascore-logo.png";
 import { updatePosterUrl, formatVotes } from "../utils";
 
-const Card = ({ item }) => {
+const Card = ({ item, ranking }) => {
   return (
-    <div>
+    <div className={styles.container} data-ranking={ranking}>
       <figure className={styles.figure}>
         <Image
           itemProp="image"

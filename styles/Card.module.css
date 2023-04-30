@@ -1,3 +1,19 @@
+.container{
+  position: relative;
+}
+
+.container::before {
+  content: attr(data-ranking);
+  position: absolute;
+  top: -16px;
+  z-index: 1;
+  font-size: 84px;
+  font-weight: bold;
+  left: -15px;
+  color: var(--citrine);
+  line-height: 1;
+  text-shadow: -2px -2px 0 var(--eerie-black), 2px -2px 0 var(--eerie-black), -2px 2px 0 var(--eerie-black), 6px 6px 0 var(--eerie-black);
+}
 
 .figure {
   position: relative;
