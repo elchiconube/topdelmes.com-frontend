@@ -56,9 +56,7 @@ export async function getServerSideProps() {
 
     const moviesResponse = response.data;
 
-    const movies = moviesResponse
-      .slice(0, 50)
-      .filter((item) => item.rating !== 0);
+    const movies = moviesResponse.slice(0, 50);
 
     return { props: { movies } };
   } catch (error) {
