@@ -117,9 +117,7 @@ export async function getServerSideProps(context) {
       `${process.env.NEXT_PUBLIC_API_URL}/series?api_key=${process.env.NEXT_PUBLIC_API_KEY}&month=${monthNumber}&year=${year}`
     );
 
-    const series = response.data
-      .filter((item) => item.rating !== 0)
-      .slice(0, 10);
+    const series = response.data.slice(0, 10);
 
     return { props: { series, year, month } };
   } catch (error) {

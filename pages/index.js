@@ -112,12 +112,8 @@ export async function getServerSideProps() {
       ]
     );
 
-    const series = seriesResponse.data
-      .filter((item) => item.rating !== 0)
-      .slice(0, 10);
-    const movies = moviesResponse.data
-      .filter((item) => item.rating !== 0)
-      .slice(0, 10);
+    const series = seriesResponse.data.slice(0, 10);
+    const movies = moviesResponse.data.slice(0, 10);
     const reviews = reviewsResponse.data.data.slice(0, 10);
 
     return { props: { series, movies, reviews } };
