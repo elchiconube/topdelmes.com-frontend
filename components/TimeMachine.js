@@ -51,10 +51,13 @@ const TimeMachine = () => {
         </p>
       </div>
       <footer className={styles.actions}>
-        <Link className={styles.cta} href={`/series/${year}/${month}`}>
+        <Link className={styles.cta} href={`/mejores/series/${year}/${month}`}>
           Soy más de series
         </Link>
-        <Link className={styles.cta} href={`/peliculas/${year}/${month}`}>
+        <Link
+          className={styles.cta}
+          href={`/mejores/peliculas/${year}/${month}`}
+        >
           Hoy me apetece películas
         </Link>
       </footer>
