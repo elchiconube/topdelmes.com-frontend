@@ -13,6 +13,8 @@ import PreviousYears from "@/components/PreviousYears";
 const Home = ({ series, movies, reviews }) => {
   const month = getMonthName(new Date().getMonth());
 
+  console.log(reviews);
+
   return (
     <Layout>
       <Head>
@@ -104,11 +106,7 @@ export async function getServerSideProps() {
         axios.get(
           `${process.env.NEXT_PUBLIC_API_URL}/movies?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
         ),
-        axios.get(`${process.env.NEXT_PUBLIC_API_URL_POST}/posts`, {
-          headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY_POST}`,
-          },
-        }),
+        axios.get(`${process.env.NEXT_PUBLIC_API_URL_POST}/posts`),
       ]
     );
 

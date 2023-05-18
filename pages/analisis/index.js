@@ -52,12 +52,7 @@ const Reviews = ({ reviews }) => {
 export async function getServerSideProps() {
   try {
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL_POST}/posts`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY_POST}`,
-        },
-      }
+      `${process.env.NEXT_PUBLIC_API_URL_POST}/posts`
     );
 
     const reviews = response.data.data.sort((a, b) => {});
