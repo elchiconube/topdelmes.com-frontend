@@ -106,7 +106,9 @@ export async function getServerSideProps() {
         axios.get(
           `${process.env.NEXT_PUBLIC_API_URL}/movies?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
         ),
-        axios.get(`${process.env.NEXT_PUBLIC_API_URL_POST}/posts`),
+        axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL_POST}/posts?sort=createdAt:desc`
+        ),
       ]
     );
 
