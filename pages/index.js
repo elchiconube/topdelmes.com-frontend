@@ -13,8 +13,6 @@ import PreviousYears from "@/components/PreviousYears";
 const Home = ({ series, movies, reviews }) => {
   const month = getMonthName(new Date().getMonth());
 
-  console.log(reviews);
-
   return (
     <Layout>
       <Head>
