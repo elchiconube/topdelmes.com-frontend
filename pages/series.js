@@ -3,7 +3,12 @@ import styles from "@/styles/Series.module.css";
 import List from "@/components/List";
 import Layout from "@/components/Layout";
 import axios from "axios";
-import { getMonthName } from "@/utils";
+import {
+  axiosConfig,
+  getCurrentMonth,
+  getCurrentYear,
+  getMonthName,
+} from "@/utils";
 import Previous from "@/components/Previous";
 import PreviousYears from "@/components/PreviousYears";
 
@@ -49,14 +54,20 @@ const Series = ({ series }) => {
 };
 
 export async function getServerSideProps() {
+  const month = getCurrentMonth();
+  const year = getCurrentYear();
+
   try {
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/series?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/tops?filters[year][$eq][0]=${year}&filters[month][$eq][1]=${month}&populate=*`,
+      axiosConfig
     );
 
-    const seriesResponse = response.data;
+    const contents = response.data.data[0].attributes.contents.data;
 
-    const series = seriesResponse.slice(0, 50);
+    const series = contents
+      .filter((i) => i.attributes.type === "tv_series")
+      .slice(0, 10);
 
     return { props: { series } };
   } catch (error) {

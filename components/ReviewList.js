@@ -17,7 +17,7 @@ const ReviewList = ({ reviews = [] }) => {
           <article className={styles.article}>
             <figure
               style={{
-                backgroundImage: `url("${review.attributes.cover_url}")`,
+                backgroundImage: `url("${review.attributes.image}")`,
               }}
             >
               <a href={`/analisis/${review.attributes.slug}`} itemProp="url">

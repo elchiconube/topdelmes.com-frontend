@@ -1,5 +1,4 @@
 import { Poppins } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
 import Head from "next/head";
 import Script from "next/script";
 import "@/styles/globals.css";
@@ -41,7 +40,6 @@ export default function App({ Component, pageProps }) {
         }
       `}</style>
       <Component {...pageProps} />
-      <Analytics />
     </>
   );
 }

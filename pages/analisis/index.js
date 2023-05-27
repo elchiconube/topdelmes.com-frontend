@@ -4,6 +4,7 @@ import Head from "next/head";
 import styles from "@/styles/Reviews.module.css";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { axiosConfig } from "@/utils";
 
 const Reviews = ({ reviews }) => {
   const { isFallback } = useRouter();
@@ -52,7 +53,9 @@ const Reviews = ({ reviews }) => {
 export async function getServerSideProps() {
   try {
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL_POST}/posts?sort=createdAt:desc`
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/reviews?sort=createdAt:desc`,
+
+      axiosConfig
     );
 
     const reviews = response.data.data;

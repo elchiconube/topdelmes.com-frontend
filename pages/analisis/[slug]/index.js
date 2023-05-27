@@ -3,7 +3,7 @@ import styles from "@/styles/Review.module.css";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { markdownToHtml, postFormatDate } from "@/utils";
+import { axiosConfig, markdownToHtml, postFormatDate } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import metascoreLogo from "@/public/metascore-logo.png";
@@ -13,11 +13,11 @@ import YoutubeVideo from "@/components/YoutubeVideo";
 const Review = ({ review }) => {
   const { isFallback } = useRouter();
 
-  if (isFallback) {
+  if (isFallback || !review) {
     return <div>Cargando...</div>;
   }
 
-  const body = markdownToHtml(review.attributes.description);
+  const body = markdownToHtml(review.attributes.body);
 
   return (
     <Layout>
@@ -46,7 +46,7 @@ const Review = ({ review }) => {
           name="twitter:description"
           content={`Descubre el análisis de ${review.attributes.title}. Lee nuestra crítica detallada y entérate de por qué no te puedes perder.`}
         />
-        <meta name="twitter:image" content={review.attributes.cover_url} />
+        <meta name="twitter:image" content={review.attributes.image} />
 
         <meta
           property="og:title"
@@ -56,7 +56,7 @@ const Review = ({ review }) => {
           property="og:description"
           content={`Descubre el análisis de ${review.attributes.title}. Lee nuestra crítica detallada y entérate de por qué no te puedes perder.`}
         />
-        <meta property="og:image" content={review.attributes.cover_url} />
+        <meta property="og:image" content={review.attributes.image} />
         <meta property="og:type" content="article" />
         <meta
           property="og:url"
@@ -82,13 +82,20 @@ const Review = ({ review }) => {
             {postFormatDate(review.attributes.publishedAt)}
           </time>
           <p itemProp="author" itemScope itemType="http://schema.org/Person">
-            <span itemProp="name">Oscar Bustos</span>
+            <Link
+              itemProp="url"
+              href={`/autores/${review.attributes.author.data.attributes.slug}`}
+            >
+              <span itemProp="name">
+                {review.attributes.author.data.attributes.fullname}
+              </span>
+            </Link>
           </p>
         </div>
         <figure className={styles.figure}>
           <Image
             itemProp="image"
-            src={review.attributes.cover_url}
+            src={review.attributes.image}
             width={862}
             height={465}
             alt={`Análisis ${review.attributes.title}`}
@@ -117,7 +124,6 @@ const Review = ({ review }) => {
           dangerouslySetInnerHTML={{ __html: body }}
         />
         <p className={styles.actions}>
-          {" "}
           <Link
             href={"/analisis"}
             className={styles.cta}
@@ -126,7 +132,9 @@ const Review = ({ review }) => {
             Ver más análisis
           </Link>
         </p>
-        <YoutubeVideo url={review.attributes.trailer_url} />
+        {review.attributes.trailer && (
+          <YoutubeVideo url={review.attributes.trailer} />
+        )}
       </article>
     </Layout>
   );
@@ -137,10 +145,13 @@ export async function getServerSideProps(context) {
 
   try {
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL_POST}/posts?filters[slug][$eq]=${slug}`
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/reviews?filters[slug][$eq]=${slug}&populate=*`,
+      axiosConfig
     );
 
     const review = response.data.data[0];
+
+    console.log({ review });
 
     return { props: { review } };
   } catch (error) {

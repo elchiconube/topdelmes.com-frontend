@@ -1,6 +1,25 @@
 import { remark } from "remark";
 import html from "remark-html";
 
+export const getCurrentYear = () => {
+  const date = new Date();
+  const year = date.getFullYear();
+  return year;
+};
+
+export const getCurrentMonth = () => {
+  const date = new Date();
+  const month = date.getMonth();
+  return month + 1;
+};
+
+export const axiosConfig = {
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+  },
+};
+
 const MONTH_NAMES = [
   "enero",
   "febrero",
@@ -86,10 +105,11 @@ export const getAdjacentYears = (yearStr, type) => {
 };
 
 export const formatVotes = (num) => {
+  console.log(num);
   if (num >= 1000) {
     return (num / 1000).toFixed(1) + "K";
   } else {
-    return num.toString();
+    return num;
   }
 };
 
