@@ -6,28 +6,30 @@ import metascoreLogo from "../public/metascore-logo.png";
 import { updatePosterUrl, formatVotes } from "../utils";
 
 const Card = ({ item, ranking }) => {
+  const { title, poster, pub_year, metascore, imdb, votes, runtime } =
+    item.attributes;
   return (
     <div className={styles.container} data-ranking={ranking}>
       <figure className={styles.figure}>
         <Image
           itemProp="image"
           className={styles.poster}
-          src={updatePosterUrl(item.poster_url)}
-          alt={`${item.title} Cartel`}
+          src={poster}
+          alt={`${title} Cartel`}
           width={280}
           height={415}
         />
       </figure>
       <div className={styles.header}>
-        <h3 itemProp="name">{item.title}</h3>
+        <h3 itemProp="name">{title}</h3>
       </div>
       <footer className={styles.footer}>
         <div className={styles.data}>
-          <time className={styles.time} dateTime={item.pub_year}>
-            {item.pub_year}
+          <time className={styles.time} dateTime={pub_year}>
+            {pub_year}
           </time>
           <div className={styles.data}>
-            {item.metascore !== 0 && (
+            {metascore !== 0 && (
               <p>
                 <Image
                   src={metascoreLogo}
@@ -35,19 +37,19 @@ const Card = ({ item, ranking }) => {
                   height={16}
                   alt="Metascore Logo"
                 />
-                {item.metascore}
+                {metascore}
               </p>
             )}
             <p>
               <Image src={imdbLogo} width={21} height={21} alt="IMDB Logo" />
-              {item.rating} ({formatVotes(item.votes)})
+              {imdb} ({formatVotes(votes)})
             </p>
           </div>
         </div>
         <div className={styles.data}>
-          {item.runtime !== 0 && (
+          {runtime !== 0 && (
             <p>
-              <Clock color="#e2d703" size={16} /> {item.runtime} min.
+              <Clock color="#e2d703" size={16} /> {runtime} min.
             </p>
           )}
         </div>

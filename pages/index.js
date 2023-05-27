@@ -4,7 +4,12 @@ import Layout from "@/components/Layout";
 import TimeMachine from "@/components/TimeMachine";
 import styles from "@/styles/Home.module.css";
 import axios from "axios";
-import { getMonthName } from "@/utils";
+import {
+  axiosConfig,
+  getCurrentMonth,
+  getCurrentYear,
+  getMonthName,
+} from "@/utils";
 import Link from "next/link";
 import Previous from "@/components/Previous";
 import ReviewList from "@/components/ReviewList";
@@ -12,6 +17,8 @@ import PreviousYears from "@/components/PreviousYears";
 
 const Home = ({ series, movies, reviews }) => {
   const month = getMonthName(new Date().getMonth());
+
+  console.log({ series, movies, reviews });
 
   return (
     <Layout>
@@ -95,23 +102,31 @@ const Home = ({ series, movies, reviews }) => {
 };
 
 export async function getServerSideProps() {
-  try {
-    const [seriesResponse, moviesResponse, reviewsResponse] = await Promise.all(
-      [
-        axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/series?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
-        ),
-        axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/movies?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
-        ),
-        axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL_POST}/posts?sort=createdAt:desc`
-        ),
-      ]
-    );
+  const month = getCurrentMonth();
+  const year = getCurrentYear();
 
-    const series = seriesResponse.data.slice(0, 10);
-    const movies = moviesResponse.data.slice(0, 10);
+  try {
+    const [contentsResponse, reviewsResponse] = await Promise.all([
+      axios.get(
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/tops?filters[year][$eq][0]=${year}&filters[month][$eq][1]=${month}&populate=*`,
+        axiosConfig
+      ),
+      axios.get(
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/reviews?sort=createdAt:desc`,
+        axiosConfig
+      ),
+    ]);
+
+    const contents = contentsResponse.data.data[0].attributes.contents.data;
+
+    const series = contents
+      .filter((i) => i.attributes.type === "tv_series")
+      .slice(0, 10);
+
+    const movies = contents
+      .filter((i) => i.attributes.type === "movie")
+      .slice(0, 10);
+
     const reviews = reviewsResponse.data.data.slice(0, 10);
 
     return { props: { series, movies, reviews } };

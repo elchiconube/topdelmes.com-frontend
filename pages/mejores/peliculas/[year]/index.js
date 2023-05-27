@@ -4,7 +4,12 @@ import styles from "@/styles/Series.module.css";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { getAdjacentYears, isCurrentYear, isValidYear } from "@/utils";
+import {
+  axiosConfig,
+  getAdjacentYears,
+  isCurrentYear,
+  isValidYear,
+} from "@/utils";
 import Link from "next/link";
 
 const Movies = ({ year, movies }) => {
@@ -102,10 +107,15 @@ export async function getServerSideProps(context) {
     }
 
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/movies?api_key=${process.env.NEXT_PUBLIC_API_KEY}&year=${year}`
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/tops?filters[year][$eq]=${year}&populate=*`,
+      axiosConfig
     );
 
-    const movies = response.data.slice(0, 10);
+    const contents = response.data.data[0].attributes.contents.data;
+
+    const movies = contents
+      .filter((i) => i.attributes.type === "movie")
+      .slice(0, 10);
 
     return { props: { movies, year } };
   } catch (error) {

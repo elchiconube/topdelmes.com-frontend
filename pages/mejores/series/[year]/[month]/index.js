@@ -9,6 +9,7 @@ import {
   getMonthNumber,
   isCurrentMonthAndYear,
   getPrevNextYearMonth,
+  axiosConfig,
 } from "@/utils";
 import Link from "next/link";
 
@@ -114,10 +115,15 @@ export async function getServerSideProps(context) {
     const monthNumber = getMonthNumber(month);
 
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/series?api_key=${process.env.NEXT_PUBLIC_API_KEY}&month=${monthNumber}&year=${year}`
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/tops?filters[year][$eq][0]=${year}&filters[month][$eq][1]=${monthNumber}&populate=*`,
+      axiosConfig
     );
 
-    const series = response.data.slice(0, 10);
+    const contents = response.data.data[0].attributes.contents.data;
+
+    const series = contents
+      .filter((i) => i.attributes.type === "tv_series")
+      .slice(0, 10);
 
     return { props: { series, year, month } };
   } catch (error) {
