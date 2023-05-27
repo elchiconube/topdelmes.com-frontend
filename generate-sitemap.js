@@ -1,4 +1,4 @@
-const { SitemapStream, streamToPromise } = require("sitemap");
+const { SitemapStream } = require("sitemap");
 const { createWriteStream } = require("fs");
 const axios = require("axios");
 require("dotenv").config();
@@ -6,6 +6,13 @@ require("dotenv").config();
 const currentDate = new Date();
 const currentYear = currentDate.getFullYear();
 const currentMonth = currentDate.getMonth();
+
+const axiosConfig = {
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+  },
+};
 
 const months = [
   "enero",
@@ -63,11 +70,10 @@ for (let year = 1920; year <= currentYear; year++) {
 
 async function fetchPostsAndGenerateSitemap() {
   try {
-    const response = await axios.get(`${process.env.API_URL_POST}/posts`, {
-      headers: {
-        Authorization: `Bearer ${process.env.API_KEY_POST}`,
-      },
-    });
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/reviews`,
+      axiosConfig
+    );
     const posts = response.data.data;
 
     posts.forEach((post) => {
