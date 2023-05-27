@@ -16,7 +16,7 @@ const Home = ({ series, movies, reviews }) => {
   return (
     <Layout>
       <Head>
-        <title>{`TopDelMes ${month}: Las 10 Películas y Series Más Populares del Mes`}</title>
+        <title>{`TopDelMes ${month}: Las 10 Películas y Series más populares del Mes`}</title>
         <meta
           name="description"
           content={`Descubre las 10 películas y series más populares de ${month} en TopDelMes.com. ¡Entérate de lo más visto y no te pierdas ninguna novedad!`}
