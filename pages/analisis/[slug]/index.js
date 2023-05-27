@@ -151,8 +151,6 @@ export async function getServerSideProps(context) {
 
     const review = response.data.data[0];
 
-    console.log({ review });
-
     return { props: { review } };
   } catch (error) {
     console.error("Error al obtener los datos:", error);
