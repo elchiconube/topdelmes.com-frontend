@@ -75,12 +75,12 @@ const Series = ({ year, month, series }) => {
         <List items={series} dataprop="TVSeries" />
         <footer className={styles.footer}>
           {prev && (
-            <Link href={`/series/${prev.year}/${prev.month}`}>
+            <Link href={`/mejores/series/${prev.year}/${prev.month}`}>
               Ver series de {prev.month} {prev.year}
             </Link>
           )}
           {next && (
-            <Link href={`/series/${next.year}/${next.month}`}>
+            <Link href={`/mejores/series/${next.year}/${next.month}`}>
               Ver series de {next.month} {next.year}
             </Link>
           )}

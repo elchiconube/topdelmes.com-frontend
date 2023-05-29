@@ -14,18 +14,19 @@ import PreviousYears from "@/components/PreviousYears";
 
 const Movies = ({ movies }) => {
   const month = getMonthName(new Date().getMonth());
+  const year = getCurrentYear();
 
   return (
     <Layout>
       <Head>
-        <title>{`Mejores Películas de ${month}: Listado Completo y Actualizado | TopDelMes`}</title>
+        <title>{`Mejores Películas de ${month} ${year}: Listado Completo y Actualizado | TopDelMes`}</title>
         <meta
           name="description"
-          content={`Echa un vistazo a las mejores películas de ${month} en nuestra selección completa y actualizada en TopDelMes.com. ¡No te pierdas los últimos estrenos!`}
+          content={`Echa un vistazo a las mejores películas de ${month} ${year} en nuestra selección completa y actualizada en TopDelMes.com. ¡No te pierdas los últimos estrenos!`}
         />
         <meta
           name="keywords"
-          content={`mejores películas ${month}, películas populares ${month}, películas del mes ${month}`}
+          content={`mejores películas ${month} ${year}, películas populares ${month} ${year}, películas del mes ${month} ${year}`}
         />
         <link rel="canonical" href="https://www.topdelmes.com/peliculas" />
       </Head>
@@ -34,9 +35,12 @@ const Movies = ({ movies }) => {
         itemScope
         itemType="http://schema.org/ItemList"
       >
-        <h1 className={styles.title}>Ranking de películas</h1>
+        <h1 className={styles.title}>
+          Ranking de películas {month} {year}
+        </h1>
         <h2 className={styles.subtitle}>
-          Las películas más populares y mejor puntuadas del mes
+          Las películas más populares y mejor puntuadas del mes de {month}{" "}
+          {year}
         </h2>
         <p className={styles.description}>
           Aquí, en TopDelMes, nos encanta el cine y queremos compartir contigo

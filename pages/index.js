@@ -17,26 +17,27 @@ import PreviousYears from "@/components/PreviousYears";
 
 const Home = ({ series, movies, reviews }) => {
   const month = getMonthName(new Date().getMonth());
-
-  console.log({ series, movies, reviews });
+  const year = getCurrentYear();
 
   return (
     <Layout>
       <Head>
-        <title>{`TopDelMes ${month}: Las 10 Películas y Series más populares del Mes`}</title>
+        <title>{`Top 10 Mejores Series y Películas ${month} ${year} - Actualizado Mensualmente | TopDelMes`}</title>
         <meta
           name="description"
-          content={`Descubre las 10 películas y series más populares de ${month} en TopDelMes.com. ¡Entérate de lo más visto y no te pierdas ninguna novedad!`}
+          content={`Descubre nuestra selección actualizada de las 10 mejores series y películas de ${month} ${year}.`}
         />
         <meta
           name="keywords"
-          content={`Películas y series del mes, top 10, estrenos, mejores, ${month}`}
+          content={`Películas y series del mes, top 10, estrenos, mejores, ${month}, ${year}`}
         />
         <link rel="canonical" href="https://www.topdelmes.com/" />
       </Head>
       <header className={styles.header}>
         <div>
-          <h1 className={styles.heading}>Top del mes de {month}</h1>
+          <h1 className={styles.heading}>
+            Top del mes de {month} {year}
+          </h1>
           <p>
             Bienvenido a TopDelMes, tu fuente de información sobre las películas
             y series más populares del mes actual. Aquí encontrarás las últimas
@@ -48,9 +49,11 @@ const Home = ({ series, movies, reviews }) => {
       <section className={styles.section}>
         <header>
           <p className={styles.subtitle}>
-            Las series mejor valoradas durante el mes de {month}
+            Las series mejor valoradas durante el mes de {month} {year}
           </p>
-          <h2 className={styles.title}>Top 10 de series</h2>
+          <h2 className={styles.title}>
+            Top 10 de series {month} {year}
+          </h2>
         </header>
         <List items={series} dataprop="TVSeries" />
         <footer className={styles.section_footer}>
@@ -66,9 +69,11 @@ const Home = ({ series, movies, reviews }) => {
       <section className={styles.section}>
         <header>
           <p className={styles.subtitle}>
-            Las películas mejor puntuadas durante el mes de {month}
+            Las películas mejor puntuadas durante el mes de {month} {year}
           </p>
-          <h2 className={styles.title}>Top 10 de películas</h2>
+          <h2 className={styles.title}>
+            Top 10 de películas {month} {year}
+          </h2>
         </header>
         <List items={movies} dataprop="Movie" />
         <footer className={styles.section_footer}>

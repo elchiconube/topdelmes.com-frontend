@@ -14,18 +14,18 @@ import PreviousYears from "@/components/PreviousYears";
 
 const Series = ({ series }) => {
   const month = getMonthName(new Date().getMonth());
-
+  const year = getCurrentYear();
   return (
     <Layout>
       <Head>
-        <title>{`Mejores Series de ${month}: Listado Completo y Actualizado | TopDelMes`}</title>
+        <title>{`Mejores Series de ${month} ${year}: Listado Completo y Actualizado | TopDelMes`}</title>
         <meta
           name="description"
-          content={`Explora las mejores series de ${month} en nuestra lista completa y actualizada en TopDelMes.com. ¡Encuentra tus series favoritas y descubre nuevas!`}
+          content={`Explora las mejores series de ${month} ${year} en nuestra lista completa y actualizada en TopDelMes.com. ¡Encuentra tus series favoritas y descubre nuevas!`}
         />
         <meta
           name="keywords"
-          content={`mejores series ${month}, series populares ${month}, series del mes ${month}`}
+          content={`mejores series ${month} ${year}, series populares ${month} ${year}, series del mes ${month} ${year}`}
         />
         <link rel="canonical" href="https://www.topdelmes.com/series" />
       </Head>
@@ -34,9 +34,11 @@ const Series = ({ series }) => {
         itemScope
         itemType="http://schema.org/ItemList"
       >
-        <h1 className={styles.title}>Ranking de series</h1>
+        <h1 className={styles.title}>
+          Ranking de series ${month} ${year}
+        </h1>
         <h2 className={styles.subtitle}>
-          Las series más populares y mejor puntuadas del mes
+          Las series más populares y mejor puntuadas del mes de ${month} ${year}
         </h2>
         <p className={styles.description}>
           En TopDelMes, nos esforzamos por mantenerte al día con las series más

@@ -38,6 +38,11 @@
   justify-content: space-between;
 }
 
+.author a{
+  color: var(--citrine);
+}
+
+
 .figure{
   text-align: center;
   position: relative;
@@ -90,6 +95,7 @@
   align-items: center;
   justify-content: center;
   gap: 16px;
+  padding-bottom: 16px;
 }
 
 .cta{

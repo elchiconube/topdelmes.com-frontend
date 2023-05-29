@@ -9,6 +9,7 @@ import Link from "next/link";
 import metascoreLogo from "@/public/metascore-logo.png";
 import imdbLogo from "@/public/imdb-logo.png";
 import YoutubeVideo from "@/components/YoutubeVideo";
+import { TrendUp } from "@phosphor-icons/react";
 
 const Review = ({ review }) => {
   const { isFallback } = useRouter();
@@ -81,7 +82,12 @@ const Review = ({ review }) => {
           >
             {postFormatDate(review.attributes.publishedAt)}
           </time>
-          <p itemProp="author" itemScope itemType="http://schema.org/Person">
+          <p
+            className={styles.author}
+            itemProp="author"
+            itemScope
+            itemType="http://schema.org/Person"
+          >
             <Link
               itemProp="url"
               href={`/autores/${review.attributes.author.data.attributes.slug}`}
@@ -92,15 +98,17 @@ const Review = ({ review }) => {
             </Link>
           </p>
         </div>
-        <figure className={styles.figure}>
-          <Image
-            itemProp="image"
-            src={review.attributes.image}
-            width={862}
-            height={465}
-            alt={`Análisis ${review.attributes.title}`}
-          />
-        </figure>
+        {review.attributes.image && (
+          <figure className={styles.figure}>
+            <Image
+              itemProp="image"
+              src={review.attributes.image}
+              width={862}
+              height={465}
+              alt={`Análisis ${review.attributes.title}`}
+            />
+          </figure>
+        )}
         <div className={styles.data}>
           {review.attributes.metascore && (
             <p>
@@ -115,7 +123,7 @@ const Review = ({ review }) => {
           )}
           <p>
             <Image src={imdbLogo} width={30} height={30} alt="IMDB Logo" />
-            {review.attributes.imdb}
+            {review.attributes.rate}
           </p>
         </div>
         <div
