@@ -77,12 +77,12 @@ const Peliculas = ({ year, month, movies }) => {
         <List items={movies} dataprop="Movie" />
         <footer className={styles.footer}>
           {prev && (
-            <Link href={`/peliculas/${prev.year}/${prev.month}`}>
+            <Link href={`/mejores/peliculas/${prev.year}/${prev.month}`}>
               Ver películas de {prev.month} {prev.year}
             </Link>
           )}
           {next && (
-            <Link href={`/peliculas/${next.year}/${next.month}`}>
+            <Link href={`/mejores/peliculas/${next.year}/${next.month}`}>
               Ver películas de {next.month} {next.year}
             </Link>
           )}
