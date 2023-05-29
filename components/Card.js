@@ -4,9 +4,10 @@ import { Clock } from "@phosphor-icons/react";
 import imdbLogo from "../public/imdb-logo.png";
 import metascoreLogo from "../public/metascore-logo.png";
 import { updatePosterUrl, formatVotes } from "../utils";
+import Link from "next/link";
 
 const Card = ({ item, ranking }) => {
-  const { title, poster, pub_year, metascore, imdb, votes, runtime } =
+  const { title, poster, pub_year, metascore, imdb, votes, runtime, reviews } =
     item.attributes;
   return (
     <div className={styles.container} data-ranking={ranking}>
@@ -47,12 +48,22 @@ const Card = ({ item, ranking }) => {
           </div>
         </div>
         <div className={styles.data}>
-          {runtime !== 0 && (
+          {runtime && runtime !== 0 && (
             <p>
               <Clock color="#e2d703" size={16} /> {runtime} min.
             </p>
           )}
         </div>
+        {reviews?.data?.length > 0
+          ? reviews.data.map((review) => (
+              <Link
+                className={styles.link}
+                href={`/analisis/${review.attributes.slug}`}
+              >
+                Leer análisis
+              </Link>
+            ))
+          : null}
       </footer>
     </div>
   );

@@ -51,6 +51,25 @@
   top: 2px;
 }
 
+.link{
+  color: var(--white);
+  font-size: var(--fs-11);
+  font-weight: var(--fw-700);
+  text-transform: uppercase;
+  white-space: nowrap;
+  border: 2px solid var(--citrine);
+  text-align: center;
+  border-radius: 6px;
+  padding: 4px 8px;
+  transition: all 300ms ease-in-out;
+}
+
+.link:hover{
+  color: var(--gunmetal-1);
+  background-color: var(--citrine);
+  border-color: var(--citrine);
+}
+
 .footer {
   display: flex;
   flex-direction: column;
