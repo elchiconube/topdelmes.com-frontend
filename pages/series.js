@@ -35,10 +35,10 @@ const Series = ({ series }) => {
         itemType="http://schema.org/ItemList"
       >
         <h1 className={styles.title}>
-          Ranking de series ${month} ${year}
+          Ranking de series {month} {year}
         </h1>
         <h2 className={styles.subtitle}>
-          Las series más populares y mejor puntuadas del mes de ${month} ${year}
+          Las series más populares y mejor puntuadas del mes de {month} {year}
         </h2>
         <p className={styles.description}>
           En TopDelMes, nos esforzamos por mantenerte al día con las series más
