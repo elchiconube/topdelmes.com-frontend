@@ -105,7 +105,6 @@ export const getAdjacentYears = (yearStr, type) => {
 };
 
 export const formatVotes = (num) => {
-  console.log(num);
   if (num >= 1000) {
     return (num / 1000).toFixed(1) + "K";
   } else {
