@@ -17,50 +17,62 @@ const Review = ({ review }) => {
     return <div>Cargando...</div>;
   }
 
-  const body = markdownToHtml(review.attributes.body);
+  const {
+    title,
+    metascore,
+    trailer,
+    slug,
+    body,
+    image,
+    publishedAt,
+    author,
+    rate = 6,
+  } = review.attributes;
+
+  const reviewBody = markdownToHtml(body);
 
   return (
     <Layout>
       <Head>
-        <title>{`Análisis de ${review.attributes.title} | TopDelMes`}</title>
+        <title>{`Análisis de ${title} | TopDelMes`}</title>
         <meta
           name="description"
-          content={`Descubre el análisis de ${review.attributes.title}. Lee nuestra crítica detallada y entérate de por qué no te puedes perder.`}
+          content={`Descubre el análisis de ${title}. Lee nuestra crítica detallada y entérate de por qué no te puedes perder.`}
         />
         <meta
           name="keywords"
-          content={`análisis ${review.attributes.title}, crítica ${review.attributes.title}, reseña ${review.attributes.title}, serie ${review.attributes.title}, comedia, tribunal, opinión ${review.attributes.title}, calificación ${review.attributes.title}, imdb`}
+          content={`análisis ${title}, crítica ${title}, reseña ${title}, serie ${title}, comedia, tribunal, opinión ${title}, calificación ${title}, imdb`}
         />
         <link
           rel="canonical"
-          href={`https://www.topdelmes.com/analisis/${review.attributes.slug}`}
+          href={`https://www.topdelmes.com/analisis/${slug}`}
         />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@topdelmes_" />
         <meta
           name="twitter:title"
-          content={`Análisis de ${review.attributes.title} | TopDelMes`}
+          content={`Análisis de ${title} | TopDelMes`}
         />
         <meta
           name="twitter:description"
-          content={`Descubre el análisis de ${review.attributes.title}. Lee nuestra crítica detallada y entérate de por qué no te puedes perder.`}
+          content={`Descubre el análisis de ${title}. Lee nuestra crítica detallada y entérate de por qué no te puedes perder.`}
         />
-        <meta name="twitter:image" content={review.attributes.image} />
+        <meta name="twitter:image" content={image} />
 
         <meta
           property="og:title"
-          content={`Análisis de ${review.attributes.title} | TopDelMes`}
+          content={`Análisis de ${title} | TopDelMes`}
         />
         <meta
           property="og:description"
-          content={`Descubre el análisis de ${review.attributes.title}. Lee nuestra crítica detallada y entérate de por qué no te puedes perder.`}
+          content={`Descubre el análisis de ${title}. Lee nuestra crítica detallada y entérate de por qué no te puedes perder.`}
         />
-        <meta property="og:image" content={review.attributes.image} />
+        <meta property="og:image" content={image} />
         <meta property="og:type" content="article" />
         <meta
           property="og:url"
-          content={`https://www.topdelmes.com/analisis/${review.attributes.slug}`}
+          content={`https://www.topdelmes.com/analisis/${slug}`}
         />
         <meta property="og:site_name" content="TopDelMes" />
       </Head>
@@ -73,13 +85,10 @@ const Review = ({ review }) => {
         itemScope
         itemType="http://schema.org/Article"
       >
-        <h1 itemProp="headline">{review.attributes.title}</h1>
+        <h1 itemProp="headline">{title}</h1>
         <div className={styles.pre}>
-          <time
-            dateTime={review.attributes.publishedAt}
-            itemProp="datePublished"
-          >
-            {postFormatDate(review.attributes.publishedAt)}
+          <time dateTime={publishedAt} itemProp="datePublished">
+            {postFormatDate(publishedAt)}
           </time>
           <p
             className={styles.author}
@@ -87,29 +96,31 @@ const Review = ({ review }) => {
             itemScope
             itemType="http://schema.org/Person"
           >
-            <Link
-              itemProp="url"
-              href={`/autores/${review.attributes.author.data.attributes.slug}`}
-            >
-              <span itemProp="name">
-                {review.attributes.author.data.attributes.fullname}
-              </span>
-            </Link>
+            {author ? (
+              <Link
+                itemProp="url"
+                href={`/autores/${author.data.attributes.slug}`}
+              >
+                <span itemProp="name">{author.data.attributes.fullname}</span>
+              </Link>
+            ) : (
+              <span itemProp="name">TopDelMes</span>
+            )}
           </p>
         </div>
-        {review.attributes.image && (
+        {image && (
           <figure className={styles.figure}>
             <Image
               itemProp="image"
-              src={review.attributes.image}
+              src={image}
               width={862}
               height={465}
-              alt={`Análisis ${review.attributes.title}`}
+              alt={`Análisis ${title}`}
             />
           </figure>
         )}
         <div className={styles.data}>
-          {review.attributes.metascore && (
+          {metascore && (
             <p>
               <Image
                 src={metascoreLogo}
@@ -117,18 +128,18 @@ const Review = ({ review }) => {
                 height={16}
                 alt="Metascore Logo"
               />
-              {review.attributes.metascore}
+              {metascore}
             </p>
           )}
           <p>
             <Image src={imdbLogo} width={30} height={30} alt="IMDB Logo" />
-            {review.attributes.rate}
+            {rate}
           </p>
         </div>
         <div
           itemprop="articleBody"
           className={styles.body}
-          dangerouslySetInnerHTML={{ __html: body }}
+          dangerouslySetInnerHTML={{ __html: reviewBody }}
         />
         <p className={styles.actions}>
           <Link
@@ -139,9 +150,7 @@ const Review = ({ review }) => {
             Ver más análisis
           </Link>
         </p>
-        {review.attributes.trailer && (
-          <YoutubeVideo url={review.attributes.trailer} />
-        )}
+        {trailer && <YoutubeVideo url={trailer} />}
       </article>
     </Layout>
   );
