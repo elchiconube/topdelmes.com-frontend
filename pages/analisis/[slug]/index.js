@@ -9,7 +9,6 @@ import Link from "next/link";
 import metascoreLogo from "@/public/metascore-logo.png";
 import imdbLogo from "@/public/imdb-logo.png";
 import YoutubeVideo from "@/components/YoutubeVideo";
-import { TrendUp } from "@phosphor-icons/react";
 
 const Review = ({ review }) => {
   const { isFallback } = useRouter();
