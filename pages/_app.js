@@ -15,23 +15,17 @@ export default function App({ Component, pageProps }) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=G-NP9L1106X4`}
           strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-NP9L1106X4"
         />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-NP9L1106X4', {
-            page_path: window.location.pathname,
-            });
-            `,
-          }}
-        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-NP9L1106X4');
+        `}
+        </Script>
       </Head>
 
       <style jsx global>{`
