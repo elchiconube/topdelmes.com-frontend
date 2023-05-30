@@ -13,7 +13,6 @@
   overflow: hidden;
 }
 
-
 .article figure {
   position: relative;
   background: var(--gunmetal-1);
@@ -23,6 +22,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  height: 235px;
 }
 
 .article figure a {
