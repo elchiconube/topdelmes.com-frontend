@@ -96,7 +96,7 @@ const Review = ({ review }) => {
             itemScope
             itemType="http://schema.org/Person"
           >
-            {author ? (
+            {author?.data?.attributes?.slug ? (
               <Link
                 itemProp="url"
                 href={`/autores/${author.data.attributes.slug}`}
