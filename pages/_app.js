@@ -14,18 +14,6 @@ export default function App({ Component, pageProps }) {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=G-NP9L1106X4`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){window.dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-NP9L1106X4');
-        `}
-        </Script>
       </Head>
 
       <style jsx global>{`
@@ -33,6 +21,18 @@ export default function App({ Component, pageProps }) {
           font-family: ${poppins.style.fontFamily};
         }
       `}</style>
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=G-NP9L1106X4`}
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-NP9L1106X4');
+        `}
+      </Script>
       <Component {...pageProps} />
     </>
   );
