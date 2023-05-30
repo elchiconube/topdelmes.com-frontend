@@ -88,6 +88,7 @@ export const getPrevNextYearMonth = (yearStr, monthStr, type) => {
 };
 
 export const limitDescription = (str) => {
+  if (!str) return "";
   if (str.length > 150) {
     return str.slice(0, 150) + "...";
   } else {
