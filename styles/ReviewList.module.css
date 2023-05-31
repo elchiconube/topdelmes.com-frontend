@@ -15,7 +15,7 @@
 
 .article figure {
   position: relative;
-  background: var(--gunmetal-1);
+  background-color: var(--gunmetal-1);
   aspect-ratio: 16 / 9;
   overflow: hidden;
   transition: var(--transition-1);
@@ -23,6 +23,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   height: 235px;
+  width: 100%;
 }
 
 
