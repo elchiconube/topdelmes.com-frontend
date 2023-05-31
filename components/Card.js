@@ -9,6 +9,7 @@ import Link from "next/link";
 const Card = ({ item, ranking }) => {
   const { title, poster, pub_year, metascore, imdb, votes, runtime, reviews } =
     item.attributes;
+
   return (
     <div className={styles.container} data-ranking={ranking}>
       <figure className={styles.figure}>
@@ -57,6 +58,7 @@ const Card = ({ item, ranking }) => {
         {reviews?.data?.length > 0
           ? reviews.data.map((review) => (
               <Link
+                key={review.id}
                 className={styles.link}
                 href={`/analisis/${review.attributes.slug}`}
               >
