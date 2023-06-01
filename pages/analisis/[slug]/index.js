@@ -4,6 +4,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { axiosConfig, markdownToHtml, postFormatDate } from "@/utils";
+import removeMarkdown from "markdown-to-text";
 import Image from "next/image";
 import Link from "next/link";
 import metascoreLogo from "@/public/metascore-logo.png";
@@ -25,11 +26,20 @@ const Review = ({ review }) => {
     body,
     image,
     publishedAt,
+    director,
+    updatedAt,
     author,
+    contents,
     rate = 6,
   } = review.attributes;
 
   const reviewBody = markdownToHtml(body);
+
+  const relatedContent =
+    contents.data.length > 0 ? contents.data[0].attributes : null;
+  const articleAuthor = author.data.attributes;
+
+  const breadCrumbTitle = relatedContent ? relatedContent.title : title;
 
   return (
     <Layout>
@@ -76,9 +86,44 @@ const Review = ({ review }) => {
         />
         <meta property="og:site_name" content="TopDelMes" />
       </Head>
-
       <nav className={styles.breadcrumb}>
-        <i>»</i> <Link href="/analisis">Análisis</Link>
+        <ol itemScope itemType="http://schema.org/BreadcrumbList">
+          <li
+            itemProp="itemListElement"
+            itemScope
+            itemType="http://schema.org/ListItem"
+          >
+            <Link itemProp="item" href="https://topdelmes.com/">
+              <span itemProp="name">Inicio</span>
+            </Link>
+            <meta itemProp="position" content="1" />
+          </li>
+          »
+          <li
+            itemProp="itemListElement"
+            itemScope
+            itemType="http://schema.org/ListItem"
+          >
+            <Link itemProp="item" href="https://topdelmes.com/analisis">
+              <span itemProp="name">Análisis</span>
+            </Link>
+            <meta itemProp="position" content="2" />
+          </li>
+          »
+          <li
+            itemProp="itemListElement"
+            itemScope
+            itemType="http://schema.org/ListItem"
+          >
+            <Link
+              itemProp="item"
+              href={`https://topdelmes.com/analisis/${slug}`}
+            >
+              <span itemProp="name">{breadCrumbTitle}</span>
+            </Link>
+            <meta itemProp="position" content="3" />
+          </li>
+        </ol>
       </nav>
       <article
         className={styles.article}
@@ -90,18 +135,16 @@ const Review = ({ review }) => {
           <time dateTime={publishedAt} itemProp="datePublished">
             {postFormatDate(publishedAt)}
           </time>
+          <meta dateTime={updatedAt} itemProp="dateModified" />
           <p
             className={styles.author}
             itemProp="author"
             itemScope
             itemType="http://schema.org/Person"
           >
-            {author?.data?.attributes?.slug ? (
-              <Link
-                itemProp="url"
-                href={`/autores/${author.data.attributes.slug}`}
-              >
-                <span itemProp="name">{author.data.attributes.fullname}</span>
+            {articleAuthor ? (
+              <Link itemProp="url" href={`/autores/${articleAuthor.slug}`}>
+                <span itemProp="name">{articleAuthor.fullname}</span>
               </Link>
             ) : (
               <span itemProp="name">TopDelMes</span>
@@ -137,7 +180,7 @@ const Review = ({ review }) => {
           </p>
         </div>
         <div
-          itemprop="articleBody"
+          itemProp="articleBody"
           className={styles.body}
           dangerouslySetInnerHTML={{ __html: reviewBody }}
         />
@@ -152,6 +195,51 @@ const Review = ({ review }) => {
         </p>
         {trailer && <YoutubeVideo url={trailer} />}
       </article>
+      {relatedContent ? (
+        <footer itemScope itemType="http://schema.org/Movie">
+          <meta itemProp="name" content={relatedContent.title} />
+          <meta itemProp="image" content={relatedContent.poster} />
+          <meta itemProp="description" content={relatedContent.description} />
+          <meta itemProp="director" content={director} />
+          <meta itemProp="dateCreated" content={relatedContent.createdAt} />
+          <div itemProp="offers" itemScope itemType="http://schema.org/Offer">
+            <meta itemProp="price" content="0.00" />
+            <meta itemProp="priceCurrency" content="$" />
+            <div
+              itemProp="seller"
+              itemScope
+              itemType="http://schema.org/Person"
+            >
+              <meta itemProp="name" content={articleAuthor.fullname} />
+            </div>
+          </div>
+          <div itemProp="review" itemScope itemType="http://schema.org/Review">
+            <div
+              itemProp="author"
+              itemScope
+              itemType="http://schema.org/Person"
+            >
+              <meta
+                itemProp="url"
+                content={`https://topdelmes.com/autores/${articleAuthor.slug}`}
+              />
+
+              <meta itemProp="name" content={articleAuthor.fullname} />
+            </div>
+            <div
+              itemProp="reviewRating"
+              itemScope
+              itemType="http://schema.org/Rating"
+            >
+              <meta itemProp="bestRating" content="10" />
+              <meta itemProp="worstRating" content="0" />
+              <meta itemProp="ratingValue" content={rate} />
+            </div>
+            <meta itemProp="name" content={relatedContent.title} />
+            <meta itemProp="reviewBody" content={removeMarkdown(body)} />
+          </div>
+        </footer>
+      ) : null}
     </Layout>
   );
 };
