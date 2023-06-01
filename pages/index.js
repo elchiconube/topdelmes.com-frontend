@@ -9,6 +9,7 @@ import {
   getCurrentMonth,
   getCurrentYear,
   getMonthName,
+  getToday,
 } from "@/utils";
 import Link from "next/link";
 import Previous from "@/components/Previous";
@@ -18,6 +19,7 @@ import PreviousYears from "@/components/PreviousYears";
 const Home = ({ series, movies, reviews }) => {
   const month = getMonthName(new Date().getMonth());
   const year = getCurrentYear();
+  const today = getToday();
 
   return (
     <Layout>
@@ -38,6 +40,7 @@ const Home = ({ series, movies, reviews }) => {
           <h1 className={styles.heading}>
             Top del mes de {month} {year}
           </h1>
+          <h2 className={styles.subtitle}>Actualizado {today}</h2>
           <p>
             Bienvenido a TopDelMes, tu fuente de información sobre las películas
             y series más populares del mes actual. Aquí encontrarás las últimas
@@ -58,10 +61,10 @@ const Home = ({ series, movies, reviews }) => {
         <List items={series} dataprop="TVSeries" />
         <footer className={styles.section_footer}>
           <Link className={styles.cta} href="/series">
-            Mejores estrenos de series de este mes
+            Ver el top completo de {month} {year}
           </Link>
-          <Link className={styles.cta} href="/mejores/series/2023">
-            Mejores series del año 2023
+          <Link className={styles.cta} href={`/mejores/series/${year}`}>
+            Mejores series del año {year}
           </Link>
         </footer>
       </section>
@@ -78,10 +81,10 @@ const Home = ({ series, movies, reviews }) => {
         <List items={movies} dataprop="Movie" />
         <footer className={styles.section_footer}>
           <Link className={styles.cta} href="/peliculas">
-            Mejores estrenos de películas de este mes
+            Ver el top completo de {month} {year}
           </Link>
-          <Link className={styles.cta} href="/mejores/peliculas/2023">
-            Mejores películas del año 2023
+          <Link className={styles.cta} href={`/mejores/peliculas/${year}`}>
+            Mejores películas del año {year}
           </Link>
         </footer>
       </section>

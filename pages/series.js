@@ -8,6 +8,7 @@ import {
   getCurrentMonth,
   getCurrentYear,
   getMonthName,
+  getToday,
 } from "@/utils";
 import Previous from "@/components/Previous";
 import PreviousYears from "@/components/PreviousYears";
@@ -15,6 +16,7 @@ import PreviousYears from "@/components/PreviousYears";
 const Series = ({ series }) => {
   const month = getMonthName(new Date().getMonth());
   const year = getCurrentYear();
+  const today = getToday();
   return (
     <Layout>
       <Head>
@@ -35,10 +37,11 @@ const Series = ({ series }) => {
         itemType="http://schema.org/ItemList"
       >
         <h1 className={styles.title}>
-          Ranking de series {month} {year}
+          Top 50 de series {month} {year}
         </h1>
         <h2 className={styles.subtitle}>
-          Las series más populares y mejor puntuadas del mes de {month} {year}
+          Las series más populares y mejor puntuadas del mes de {month} {year}{" "}
+          (actualizado {today})
         </h2>
         <p className={styles.description}>
           En TopDelMes, nos esforzamos por mantenerte al día con las series más
@@ -67,9 +70,7 @@ export async function getServerSideProps() {
 
     const contents = response.data.data[0].attributes.contents.data;
 
-    const series = contents
-      .filter((i) => i.attributes.type === "tv_series")
-      .slice(0, 10);
+    const series = contents.filter((i) => i.attributes.type === "tv_series");
 
     return { props: { series } };
   } catch (error) {
