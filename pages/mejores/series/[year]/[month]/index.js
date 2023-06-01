@@ -45,13 +45,13 @@ const Series = ({ year, month, series }) => {
         itemType="http://schema.org/ItemList"
       >
         <h1 className={styles.title}>
-          Las mejores series de {month} {year}: Top 10 del mes
+          Las mejores series de {month} {year}: Top 50 del mes
         </h1>
         <h2 className={styles.subtitle}>
           Las series mejor puntuadas durante el mes de {month} de {year}
         </h2>
         <p className={styles.description}>
-          Descubre las 10 series más populares y mejor valoradas del mes de{" "}
+          Descubre las 50 series más populares y mejor valoradas del mes de{" "}
           {month} {year} en nuestra selección mensual. Este ranking te ayudará a
           mantenerte informado sobre las últimas tendencias y los estrenos más
           destacados en el mundo de las series de televisión. No te pierdas
@@ -121,9 +121,7 @@ export async function getServerSideProps(context) {
 
     const contents = response.data.data[0].attributes.contents.data;
 
-    const series = contents
-      .filter((i) => i.attributes.type === "tv_series")
-      .slice(0, 10);
+    const series = contents.filter((i) => i.attributes.type === "tv_series");
 
     return { props: { series, year, month } };
   } catch (error) {

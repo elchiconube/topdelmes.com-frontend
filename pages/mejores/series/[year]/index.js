@@ -48,7 +48,7 @@ const Series = ({ year, series }) => {
           Las series mejor puntuadas durante el {year}
         </h2>
         <p className={styles.description}>
-          Descubre las 10 series más populares y mejor valoradas y estrenadas en{" "}
+          Descubre las 50 series más populares y mejor valoradas y estrenadas en{" "}
           {year}.
         </p>
         <p className={styles.description}>
@@ -113,9 +113,7 @@ export async function getServerSideProps(context) {
 
     const contents = response.data.data[0].attributes.contents.data;
 
-    const series = contents
-      .filter((i) => i.attributes.type === "tv_series")
-      .slice(0, 10);
+    const series = contents.filter((i) => i.attributes.type === "tv_series");
 
     return { props: { series, year } };
   } catch (error) {

@@ -45,13 +45,13 @@ const Peliculas = ({ year, month, movies }) => {
         itemType="http://schema.org/ItemList"
       >
         <h1 className={styles.title}>
-          Las mejores películas de {month} {year}: Top 10 del mes
+          Las mejores películas de {month} {year}: Top 50 del mes
         </h1>
         <h2 className={styles.subtitle}>
           Las películas mejor puntuadas durante el mes de {month} de {year}
         </h2>
         <p className={styles.description}>
-          Descubre las 10 películas más populares y mejor valoradas del mes de{" "}
+          Descubre las 50 películas más populares y mejor valoradas del mes de{" "}
           {month} {year} en nuestra selección mensual. Este ranking te mantendrá
           al día sobre las últimas tendencias y los estrenos más destacados en
           el mundo del cine. No te pierdas ninguna novedad y disfruta de las
@@ -123,9 +123,7 @@ export async function getServerSideProps(context) {
 
     const contents = response.data.data[0].attributes.contents.data;
 
-    const movies = contents
-      .filter((i) => i.attributes.type === "movie")
-      .slice(0, 10);
+    const movies = contents.filter((i) => i.attributes.type === "movie");
 
     return { props: { movies, year, month } };
   } catch (error) {
