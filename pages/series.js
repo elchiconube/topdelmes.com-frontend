@@ -67,9 +67,7 @@ export async function getServerSideProps() {
 
     const contents = response.data.data[0].attributes.contents.data;
 
-    const series = contents
-      .filter((i) => i.attributes.type === "tv_series")
-      .slice(0, 10);
+    const series = contents.filter((i) => i.attributes.type === "tv_series");
 
     return { props: { series } };
   } catch (error) {

@@ -58,10 +58,10 @@ const Home = ({ series, movies, reviews }) => {
         <List items={series} dataprop="TVSeries" />
         <footer className={styles.section_footer}>
           <Link className={styles.cta} href="/series">
-            Mejores estrenos de series de este mes
+            Ver el top completo de {month} {year}
           </Link>
-          <Link className={styles.cta} href="/mejores/series/2023">
-            Mejores series del año 2023
+          <Link className={styles.cta} href={`/mejores/series/${year}`}>
+            Mejores series del año {year}
           </Link>
         </footer>
       </section>
@@ -78,10 +78,10 @@ const Home = ({ series, movies, reviews }) => {
         <List items={movies} dataprop="Movie" />
         <footer className={styles.section_footer}>
           <Link className={styles.cta} href="/peliculas">
-            Mejores estrenos de películas de este mes
+            Ver el top completo de {month} {year}
           </Link>
-          <Link className={styles.cta} href="/mejores/peliculas/2023">
-            Mejores películas del año 2023
+          <Link className={styles.cta} href={`/mejores/peliculas/${year}`}>
+            Mejores películas del año {year}
           </Link>
         </footer>
       </section>
