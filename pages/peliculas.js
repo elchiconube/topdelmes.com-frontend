@@ -8,6 +8,7 @@ import {
   getCurrentMonth,
   getCurrentYear,
   getMonthName,
+  getToday,
 } from "@/utils";
 import Previous from "@/components/Previous";
 import PreviousYears from "@/components/PreviousYears";
@@ -15,6 +16,7 @@ import PreviousYears from "@/components/PreviousYears";
 const Movies = ({ movies }) => {
   const month = getMonthName(new Date().getMonth());
   const year = getCurrentYear();
+  const today = getToday();
 
   return (
     <Layout>
@@ -36,11 +38,11 @@ const Movies = ({ movies }) => {
         itemType="http://schema.org/ItemList"
       >
         <h1 className={styles.title}>
-          Ranking de películas {month} {year}
+          Top 50 de películas {month} {year}
         </h1>
         <h2 className={styles.subtitle}>
           Las películas más populares y mejor puntuadas del mes de {month}{" "}
-          {year}
+          {year} (actualizado {today})
         </h2>
         <p className={styles.description}>
           Aquí, en TopDelMes, nos encanta el cine y queremos compartir contigo

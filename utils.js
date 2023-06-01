@@ -55,6 +55,14 @@ export const updatePosterUrl = (url) => {
   return newUrl;
 };
 
+export const getToday = (date) => {
+  const opts = { day: "numeric", month: "long", year: "numeric" };
+  const today = date ? new Date(date) : new Date();
+  const format = new Intl.DateTimeFormat("es-ES", opts);
+
+  return format.format(today);
+};
+
 export const getPrevNextYearMonth = (yearStr, monthStr, type) => {
   const year = parseInt(yearStr, 10);
   const month = getMonthNumber(monthStr);

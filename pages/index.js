@@ -9,6 +9,7 @@ import {
   getCurrentMonth,
   getCurrentYear,
   getMonthName,
+  getToday,
 } from "@/utils";
 import Link from "next/link";
 import Previous from "@/components/Previous";
@@ -18,6 +19,7 @@ import PreviousYears from "@/components/PreviousYears";
 const Home = ({ series, movies, reviews }) => {
   const month = getMonthName(new Date().getMonth());
   const year = getCurrentYear();
+  const today = getToday();
 
   return (
     <Layout>
@@ -38,6 +40,7 @@ const Home = ({ series, movies, reviews }) => {
           <h1 className={styles.heading}>
             Top del mes de {month} {year}
           </h1>
+          <h2 className={styles.subtitle}>Actualizado {today}</h2>
           <p>
             Bienvenido a TopDelMes, tu fuente de información sobre las películas
             y series más populares del mes actual. Aquí encontrarás las últimas
