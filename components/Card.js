@@ -23,6 +23,7 @@ const Card = ({ item, ranking }) => {
     <div className={styles.container} data-ranking={ranking}>
       <figure className={styles.figure}>
         <Image
+          loading="lazy"
           itemProp="image"
           className={styles.poster}
           src={poster}
