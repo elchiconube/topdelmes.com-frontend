@@ -48,7 +48,7 @@ const Movies = ({ year, movies }) => {
           Las películas mejor puntuadas durante el {year}
         </h2>
         <p className={styles.description}>
-          Descubre las 10 películas más populares y mejor valoradas y estrenadas
+          Descubre las 50 películas más populares y mejor valoradas y estrenadas
           en {year}.
         </p>
         <p className={styles.description}>
@@ -113,9 +113,7 @@ export async function getServerSideProps(context) {
 
     const contents = response.data.data[0].attributes.contents.data;
 
-    const movies = contents
-      .filter((i) => i.attributes.type === "movie")
-      .slice(0, 10);
+    const movies = contents.filter((i) => i.attributes.type === "movie");
 
     return { props: { movies, year } };
   } catch (error) {
