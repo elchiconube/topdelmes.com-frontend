@@ -86,7 +86,7 @@ async function fetchPostsAndGenerateSitemap() {
     });
 
     const sitemap = new SitemapStream({
-      hostname: "https://www.topdelmes.com",
+      hostname: "https://topdelmes.com",
     });
 
     sitemap.pipe(createWriteStream("./public/sitemap.xml"));
