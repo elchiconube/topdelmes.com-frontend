@@ -35,7 +35,7 @@ const Series = ({ year, series }) => {
         />
         <link
           rel="canonical"
-          href={`https://www.topdelmes.com/mejores/series/${year}`}
+          href={`https://topdelmes.com/mejores/series/${year}`}
         />
       </Head>
       <div

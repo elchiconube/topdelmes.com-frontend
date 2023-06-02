@@ -23,7 +23,7 @@ const Review = ({ author }) => {
         <meta name="keywords" content={``} />
         <link
           rel="canonical"
-          href={`https://www.topdelmes.com/autores/${author.attributes.slug}`}
+          href={`https://topdelmes.com/autores/${author.attributes.slug}`}
         />
       </Head>
 

@@ -29,7 +29,7 @@ const Series = ({ series }) => {
           name="keywords"
           content={`mejores series ${month} ${year}, series populares ${month} ${year}, series del mes ${month} ${year}`}
         />
-        <link rel="canonical" href="https://www.topdelmes.com/series" />
+        <link rel="canonical" href="https://topdelmes.com/series" />
       </Head>
       <div
         className={styles.section}

@@ -35,7 +35,7 @@ const Movies = ({ year, movies }) => {
         />
         <link
           rel="canonical"
-          href={`https://www.topdelmes.com/mejores/peliculas/${year}`}
+          href={`https://topdelmes.com/mejores/peliculas/${year}`}
         />
       </Head>
       <div
