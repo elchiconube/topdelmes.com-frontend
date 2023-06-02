@@ -74,10 +74,23 @@ const Home = ({ series, movies, reviews }) => {
           </h1>
           <h2 className={styles.subtitle}>Actualizado {today}</h2>
           <p>
-            Bienvenido a TopDelMes, tu fuente de información sobre las películas
-            y series más populares del mes actual. Aquí encontrarás las últimas
+            Bienvenido a TopDelMes, tu web de información sobre las películas y
+            series más populares del mes actual. Aquí encontrarás las últimas
             tendencias y los estrenos que están arrasando en el mundo del cine y
             la televisión.
+          </p>
+          <p>
+            Nuestra lista de las mejores series del {year} se actualiza
+            diariamente para que siempre estés al día de las últimos
+            lanzamientos. Además, podrás consultar los tops de meses anteriores
+            y de años anteriores. ¡No te pierdas nada!
+          </p>
+          <p>
+            ¿Quieres saber cuáles son las mejores series del {year}? En
+            TopDelMes te lo ponemos fácil. En nuestra web encontrarás un listado
+            con las 10 mejores series del {year} actualizado diariamente.
+            Además, podrás consultar los tops de meses anteriores y de años
+            anteriores.
           </p>
         </div>
       </header>
