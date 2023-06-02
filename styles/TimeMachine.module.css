@@ -1,17 +1,23 @@
 
 
 .section {
-  background-image: url('/pattern.png');
   background-color: var(--raisin-black);
   min-height: 30vh;
   background-size: 35%;
   padding: 50px 0;
+  position: relative;
+}
+
+.section > header{
+  position: relative;
+
 }
 
 .section > div {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 32px;
+  position: relative;
 }
 
 .section > div > p{
@@ -45,8 +51,8 @@
   align-items: center;
   justify-content: center;
   gap: 16px;
+  position: relative;
 }
-
 
 .cta{
   max-width: 360px;

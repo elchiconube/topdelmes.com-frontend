@@ -1,5 +1,7 @@
 import styles from "@/styles/TimeMachine.module.css";
 import Link from "next/link";
+import Image from "next/image";
+import pattern from "@/public/pattern.png";
 
 const TimeMachine = () => {
   const currentYear = new Date().getFullYear();
@@ -31,6 +33,17 @@ const TimeMachine = () => {
 
   return (
     <section className={styles.section}>
+      <Image
+        alt="Pattern"
+        src={pattern}
+        placeholder="blur"
+        quality={100}
+        fill
+        sizes="100vw"
+        style={{
+          objectFit: "cover",
+        }}
+      />
       <header>
         <span className={styles.subtitle}>
           Descubre películas y series al azar
