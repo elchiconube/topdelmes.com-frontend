@@ -15,6 +15,8 @@ import Link from "next/link";
 import Previous from "@/components/Previous";
 import ReviewList from "@/components/ReviewList";
 import PreviousYears from "@/components/PreviousYears";
+import Image from "next/image";
+import pattern from "@/public/pattern.png";
 
 const Home = ({ series, movies, reviews }) => {
   const month = getMonthName(new Date().getMonth());
@@ -36,6 +38,17 @@ const Home = ({ series, movies, reviews }) => {
         <link rel="canonical" href="https://www.topdelmes.com/" />
       </Head>
       <header className={styles.header}>
+        <Image
+          alt="Pattern"
+          src={pattern}
+          placeholder="blur"
+          quality={100}
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: "cover",
+          }}
+        />
         <div>
           <h1 className={styles.heading}>
             Top del mes de {month} {year}

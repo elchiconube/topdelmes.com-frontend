@@ -1,5 +1,7 @@
 import styles from "../styles/ReviewList.module.css";
 import { limitDescription, postFormatDate, sortByField } from "@/utils";
+import pattern from "@/public/pattern.png";
+import Image from "next/image";
 
 const ReviewList = ({ reviews = [] }) => {
   const items = sortByField("publishedAt", reviews, false);
@@ -14,15 +16,22 @@ const ReviewList = ({ reviews = [] }) => {
           itemType="http://schema.org/Article"
         >
           <article className={styles.article}>
-            <figure
-              style={{
-                backgroundImage: `url("${review.attributes.image}")`,
-              }}
-            >
-              <a
-                href={`/analisis/${review.attributes.slug}`}
-                itemProp="url"
-              ></a>
+            <figure>
+              <a href={`/analisis/${review.attributes.slug}`} itemProp="url">
+                {review.attributes.image && (
+                  <Image
+                    loading={"lazy"}
+                    alt={review.attributes.title}
+                    src={review.attributes.image}
+                    quality={100}
+                    fill
+                    sizes="100vw"
+                    style={{
+                      objectFit: "cover",
+                    }}
+                  />
+                )}
+              </a>
             </figure>
             <div className={styles.container}>
               <h2 itemProp="headline">
