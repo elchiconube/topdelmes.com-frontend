@@ -74,23 +74,11 @@ const Home = ({ series, movies, reviews }) => {
           </h1>
           <h2 className={styles.subtitle}>Actualizado {today}</h2>
           <p>
-            Bienvenido a TopDelMes, tu web de información sobre las películas y
-            series más populares del mes actual. Aquí encontrarás las últimas
-            tendencias y los estrenos que están arrasando en el mundo del cine y
-            la televisión.
-          </p>
-          <p>
-            Nuestra lista de las mejores series del {year} se actualiza
-            diariamente para que siempre estés al día de las últimos
-            lanzamientos. Además, podrás consultar los tops de meses anteriores
-            y de años anteriores. ¡No te pierdas nada!
-          </p>
-          <p>
-            ¿Quieres saber cuáles son las mejores series del {year}? En
-            TopDelMes te lo ponemos fácil. En nuestra web encontrarás un listado
-            con las 10 mejores series del {year} actualizado diariamente.
-            Además, podrás consultar los tops de meses anteriores y de años
-            anteriores.
+            Bienvenido a TopDelMes, tu web de información sobre las mejores
+            películas y mejores series de {year}. En nuestra web encontrarás los
+            top de series y películas por mes y por año. Descubre cuáles son las
+            películas y series más populares del {year} y cuáles son las mejor
+            valoradas por los usuarios.
           </p>
         </div>
       </header>
@@ -103,6 +91,22 @@ const Home = ({ series, movies, reviews }) => {
             Top 10 de series {month} {year}
           </h2>
         </header>
+        <div className={styles.description}>
+          <p>
+            Nuestra lista de las mejores series del {year} se actualiza
+            diariamente para que siempre estés al día de las últimos
+            lanzamientos. Además, podrás consultar los tops de meses anteriores
+            y de años anteriores. Consulta los top 50 de series desde 1990 hasta
+            hoy.
+          </p>
+          <p>
+            Esperabas que apareciera una serie en nuestro top y no la ves? No te
+            preocupes, averigua en qué posición está en nuestro{" "}
+            <Link href={`/mejores/series/${year}`}>
+              ranking de series completo
+            </Link>
+          </p>
+        </div>
         <List items={series} dataprop="TVSeries" />
         <footer className={styles.section_footer}>
           <Link className={styles.cta} href="/series">
@@ -123,6 +127,21 @@ const Home = ({ series, movies, reviews }) => {
             Top 10 de películas {month} {year}
           </h2>
         </header>
+        <div className={styles.description}>
+          <p>
+            ¿Quieres saber cuáles son las mejores películas del {year}? En
+            TopDelMes te lo ponemos fácil. En nuestra web encontrarás un listado
+            con las 10 mejores películas del {year} actualizado diariamente.
+            Además, podrás consultar el top 50 de películas del {year} y de los
+            meses anteriores. Tenemos datos desde 1920 hasta la actualidad.
+          </p>
+          <p>
+            ¿No encuentras una película en nuestro top? No te preocupes,
+            averigua en qué posición está en nuestros{" "}
+            <Link href={"/peliculas"}>top de películas completo</Link>.
+          </p>
+        </div>
+
         <List items={movies} dataprop="Movie" />
         <footer className={styles.section_footer}>
           <Link className={styles.cta} href="/peliculas">
