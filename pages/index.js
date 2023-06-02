@@ -1,9 +1,13 @@
 import Head from "next/head";
+import dynamic from "next/dynamic";
+import Link from "next/link";
+import Image from "next/image";
+import axios from "axios";
+
 import List from "@/components/List";
 import Layout from "@/components/Layout";
-import TimeMachine from "@/components/TimeMachine";
+import Loader from "@/components/Loader";
 import styles from "@/styles/Home.module.css";
-import axios from "axios";
 import {
   axiosConfig,
   getCurrentMonth,
@@ -11,12 +15,27 @@ import {
   getMonthName,
   getToday,
 } from "@/utils";
-import Link from "next/link";
-import Previous from "@/components/Previous";
-import ReviewList from "@/components/ReviewList";
-import PreviousYears from "@/components/PreviousYears";
-import Image from "next/image";
 import pattern from "@/public/pattern.png";
+
+const ReviewList = dynamic(() => import("@/components/ReviewList"), {
+  ssr: false,
+  loading: () => <Loader />,
+});
+
+const Previous = dynamic(() => import("@/components/Previous"), {
+  ssr: false,
+  loading: () => <Loader />,
+});
+
+const PreviousYears = dynamic(() => import("@/components/PreviousYears"), {
+  ssr: false,
+  loading: () => <Loader />,
+});
+
+const TimeMachine = dynamic(() => import("@/components/TimeMachine"), {
+  ssr: false,
+  loading: () => <Loader />,
+});
 
 const Home = ({ series, movies, reviews }) => {
   const month = getMonthName(new Date().getMonth());
