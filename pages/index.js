@@ -54,7 +54,7 @@ const Home = ({ series, movies, reviews }) => {
           name="keywords"
           content={`Películas y series del mes, top 10, estrenos, mejores, ${month}, ${year}`}
         />
-        <link rel="canonical" href="https://www.topdelmes.com/" />
+        <link rel="canonical" href="https://topdelmes.com/" />
       </Head>
       <header className={styles.header}>
         <Image

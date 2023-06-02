@@ -30,7 +30,7 @@ const Movies = ({ movies }) => {
           name="keywords"
           content={`mejores películas ${month} ${year}, películas populares ${month} ${year}, películas del mes ${month} ${year}`}
         />
-        <link rel="canonical" href="https://www.topdelmes.com/peliculas" />
+        <link rel="canonical" href="https://topdelmes.com/peliculas" />
       </Head>
       <div
         className={styles.section}

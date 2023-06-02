@@ -53,10 +53,7 @@ const Review = ({ review }) => {
           name="keywords"
           content={`análisis ${title}, crítica ${title}, reseña ${title}, serie ${title}, comedia, tribunal, opinión ${title}, calificación ${title}, imdb`}
         />
-        <link
-          rel="canonical"
-          href={`https://www.topdelmes.com/analisis/${slug}`}
-        />
+        <link rel="canonical" href={`https://topdelmes.com/analisis/${slug}`} />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@topdelmes_" />
@@ -82,7 +79,7 @@ const Review = ({ review }) => {
         <meta property="og:type" content="article" />
         <meta
           property="og:url"
-          content={`https://www.topdelmes.com/analisis/${slug}`}
+          content={`https://topdelmes.com/analisis/${slug}`}
         />
         <meta property="og:site_name" content="TopDelMes" />
       </Head>

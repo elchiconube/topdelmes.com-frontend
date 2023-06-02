@@ -18,7 +18,7 @@ const Authors = ({ authors }) => {
         <title>{`Autores | TopDelMes`}</title>
         <meta name="description" content={` `} />
         <meta name="keywords" content={``} />
-        <link rel="canonical" href={`https://www.topdelmes.com/autores`} />
+        <link rel="canonical" href={`https://topdelmes.com/autores`} />
       </Head>
       <div
         className={styles.section}

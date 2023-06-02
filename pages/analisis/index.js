@@ -25,7 +25,7 @@ const Reviews = ({ reviews }) => {
           name="keywords"
           content={`análisis películas, análisis series, críticas películas, críticas series, reseñas películas, reseñas series, opiniones películas, opiniones series, calificaciones películas, calificaciones series, películas, series, imdb`}
         />
-        <link rel="canonical" href={`https://www.topdelmes.com/analisis`} />
+        <link rel="canonical" href={`https://topdelmes.com/analisis`} />
       </Head>
       <div
         className={styles.section}

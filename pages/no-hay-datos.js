@@ -19,7 +19,7 @@ const NoData = ({ series, movies }) => {
           name="keywords"
           content={`404, error, página no encontrada, contenido no disponible, enlace roto`}
         />
-        <link rel="canonical" href={`https://www.topdelmes.com/no-hay-datos`} />
+        <link rel="canonical" href={`https://topdelmes.com/no-hay-datos`} />
       </Head>
       <section className={styles.error}>
         <h1 className={styles.heading}>Vaya creo que te has equivocado</h1>
