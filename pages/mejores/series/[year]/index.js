@@ -88,15 +88,6 @@ export async function getServerSideProps(context) {
   const { year } = context.params;
 
   try {
-    if (isCurrentYear(year)) {
-      return {
-        redirect: {
-          destination: "/series",
-          permanent: false,
-        },
-      };
-    }
-
     if (!isValidYear(year, "series")) {
       return {
         redirect: {
@@ -107,11 +98,11 @@ export async function getServerSideProps(context) {
     }
 
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/tops?filters[year][$eq]=${year}&populate=*`,
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/tops?filters[$and][0][year][$eq]=${year}&filters[$and][1][month][$null]&populate=*`,
       axiosConfig
     );
 
-    const contents = response.data.data[0].attributes.contents.data;
+    const contents = response.data.data[0]?.attributes?.contents?.data;
 
     const series = contents.filter((i) => i.attributes.type === "tv_series");
 

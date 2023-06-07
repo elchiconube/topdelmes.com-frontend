@@ -88,15 +88,6 @@ export async function getServerSideProps(context) {
   const { year } = context.params;
 
   try {
-    if (isCurrentYear(year)) {
-      return {
-        redirect: {
-          destination: "/peliculas",
-          permanent: false,
-        },
-      };
-    }
-
     if (!isValidYear(year, "movies")) {
       return {
         redirect: {
@@ -107,7 +98,7 @@ export async function getServerSideProps(context) {
     }
 
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/tops?filters[year][$eq]=${year}&populate=*`,
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/tops?filters[$and][0][year][$eq]=${year}&filters[$and][1][month][$null]&populate=*`,
       axiosConfig
     );
 
