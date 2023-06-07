@@ -135,6 +135,21 @@ const Home = ({
 
       <section className={styles.section}>
         <header>
+          <p className={styles.subtitle}>Últimos análisis del mes de {month}</p>
+          <h2 className={styles.title}>
+            Análisis de las mejores películas y series
+          </h2>
+        </header>
+        <ReviewList reviews={reviews} />
+        <footer className={styles.section_footer}>
+          <Link className={styles.cta} href="/analisis">
+            Ver todos los análisis
+          </Link>
+        </footer>
+      </section>
+
+      <section className={styles.section}>
+        <header>
           <p className={styles.subtitle}>
             Las series estrenadas en {month} {year} mejor valoradas
           </p>
@@ -190,20 +205,6 @@ const Home = ({
         </footer>
       </section>
 
-      <section className={styles.section}>
-        <header>
-          <p className={styles.subtitle}>Últimos análisis del mes de {month}</p>
-          <h2 className={styles.title}>
-            Análisis de las mejores películas y series del mes
-          </h2>
-        </header>
-        <ReviewList reviews={reviews} />
-        <footer className={styles.section_footer}>
-          <Link className={styles.cta} href="/analisis">
-            Ver todos los análisis
-          </Link>
-        </footer>
-      </section>
       <PreviousYears />
       <Previous />
       <TimeMachine />
