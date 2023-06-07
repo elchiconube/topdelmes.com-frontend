@@ -5,9 +5,12 @@ import styles from "@/styles/Reviews.module.css";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { axiosConfig } from "@/utils";
+import Link from "next/link";
 
-const Reviews = ({ reviews }) => {
+const Reviews = ({ reviews, pagination }) => {
   const { isFallback } = useRouter();
+
+  console.log({ pagination });
 
   if (isFallback) {
     return <div>Cargando...</div>;
@@ -46,24 +49,71 @@ const Reviews = ({ reviews }) => {
         </p>
         <ReviewList reviews={reviews} />
       </div>
+
+      {pagination && (
+        <div className={styles.pagination}>
+          {pagination.page > 1 && (
+            <Link
+              href={`/analisis?page=${pagination.page - 1}`}
+              className={styles.pagination_text}
+            >
+              Anterior
+            </Link>
+          )}
+          {Array.from(Array(pagination.pageCount).keys()).map((_, i) => {
+            const count = i + 1;
+            return pagination.page === count ? (
+              <i key={i} className={styles.pagination_current}>
+                {count}
+              </i>
+            ) : (
+              <Link
+                className={styles.pagination_link}
+                key={i}
+                href={`/analisis?page=${i + 1}`}
+              >
+                {i + 1}
+              </Link>
+            );
+          })}
+          {pagination.page < pagination.pageCount && (
+            <Link
+              href={`/analisis?page=${pagination.page + 1}`}
+              className={styles.pagination_text}
+            >
+              Siguiente
+            </Link>
+          )}
+        </div>
+      )}
     </Layout>
   );
 };
 
-export async function getServerSideProps() {
-  try {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/reviews?sort=createdAt:desc`,
+export async function getServerSideProps(context) {
+  const { page } = context.query;
 
-      axiosConfig
-    );
+  try {
+    let url = `${process.env.NEXT_PUBLIC_STRAPI_URL}/reviews?sort=createdAt:desc`;
+
+    if (page) url += `&page=${page}`;
+
+    console.log(url);
+
+    const response = await axios.get(url, axiosConfig);
 
     const reviews = response.data.data;
+    const pagination = response.data.meta.pagination;
 
-    return { props: { reviews } };
+    return {
+      props: {
+        reviews,
+        pagination,
+      },
+    };
   } catch (error) {
     console.error("Error al obtener los datos:", error);
-    return { props: { reviews: [] } };
+    return { props: { reviews: [], pagination: null } };
   }
 }
 
