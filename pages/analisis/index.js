@@ -96,7 +96,7 @@ export async function getServerSideProps(context) {
   try {
     let url = `${process.env.NEXT_PUBLIC_STRAPI_URL}/reviews?sort=createdAt:desc`;
 
-    if (page) url += `&page=${page}`;
+    if (page) url += `&pagination[page]=${page}`;
 
     console.log(url);
 
