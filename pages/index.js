@@ -37,7 +37,13 @@ const TimeMachine = dynamic(() => import("@/components/TimeMachine"), {
   loading: () => <Loader />,
 });
 
-const Home = ({ series, movies, reviews }) => {
+const Home = ({
+  seriesYear,
+  moviesYear,
+  seriesMonth,
+  moviesMonth,
+  reviews,
+}) => {
   const month = getMonthName(new Date().getMonth());
   const year = getCurrentYear();
   const today = getToday();
@@ -69,9 +75,7 @@ const Home = ({ series, movies, reviews }) => {
           }}
         />
         <div>
-          <h1 className={styles.heading}>
-            Top del mes de {month} {year}
-          </h1>
+          <h1 className={styles.heading}>Top del mes</h1>
           <h2 className={styles.subtitle}>Actualizado {today}</h2>
           <p>
             Bienvenido a TopDelMes, tu web de información sobre las mejores
@@ -82,37 +86,24 @@ const Home = ({ series, movies, reviews }) => {
           </p>
         </div>
       </header>
+
       <section className={styles.section}>
         <header>
-          <p className={styles.subtitle}>
-            Las series mejor valoradas durante el mes de {month} {year}
-          </p>
-          <h2 className={styles.title}>
-            Top 10 de series {month} {year}
-          </h2>
+          <p className={styles.subtitle}>Las mejores series de {year}</p>
+          <h2 className={styles.title}>Top 10 de series de {year}</h2>
         </header>
         <div className={styles.description}>
           <p>
             Nuestra lista de las mejores series del {year} se actualiza
             diariamente para que siempre estés al día de las últimos
-            lanzamientos. Además, podrás consultar los tops de meses anteriores
-            y de años anteriores. Consulta los top 50 de series desde 1990 hasta
-            hoy.
-          </p>
-          <p>
-            Esperabas que apareciera una serie en nuestro top y no la ves? No te
-            preocupes, averigua en qué posición está en nuestro{" "}
-            <Link href={`/mejores/series/${year}`}>
-              ranking de series completo
-            </Link>
+            lanzamientos. Esperabas que apareciera una serie en nuestro top y no
+            la ves? No te preocupes, averigua en qué posición está en nuestro{" "}
+            <Link href={`/series`}>ranking de series completo</Link>
           </p>
         </div>
-        <List items={series} dataprop="TVSeries" />
+        <List items={seriesYear} dataprop="TVSeries" />
         <footer className={styles.section_footer}>
-          <Link className={styles.cta} href="/series">
-            Ver el top completo de {month} {year}
-          </Link>
-          <Link className={styles.cta} href={`/mejores/series/${year}`}>
+          <Link className={styles.cta} href={`/series`}>
             Mejores series del año {year}
           </Link>
         </footer>
@@ -121,37 +112,84 @@ const Home = ({ series, movies, reviews }) => {
       <section className={styles.section}>
         <header>
           <p className={styles.subtitle}>
-            Las películas mejor puntuadas durante el mes de {month} {year}
+            Las películas mejor puntuadas durante el mes de {year}
           </p>
-          <h2 className={styles.title}>
-            Top 10 de películas {month} {year}
-          </h2>
+          <h2 className={styles.title}>Top 10 de películas {year}</h2>
         </header>
         <div className={styles.description}>
           <p>
             ¿Quieres saber cuáles son las mejores películas del {year}? En
-            TopDelMes te lo ponemos fácil. En nuestra web encontrarás un listado
-            con las 10 mejores películas del {year} actualizado diariamente.
-            Además, podrás consultar el top 50 de películas del {year} y de los
-            meses anteriores. Tenemos datos desde 1920 hasta la actualidad.
-          </p>
-          <p>
-            ¿No encuentras una película en nuestro top? No te preocupes,
-            averigua en qué posición está en nuestros{" "}
-            <Link href={"/peliculas"}>top de películas completo</Link>.
+            TopDelMes te lo ponemos fácil. Aquí tienes un listado con las 10
+            mejores películas del {year} actualizado diariamente. Además, podrás
+            consultar{" "}
+            <Link href={`/peliculas`}>las mejores películas de {year}.</Link>
           </p>
         </div>
-
-        <List items={movies} dataprop="Movie" />
+        <List items={moviesYear} dataprop="Movie" />
         <footer className={styles.section_footer}>
-          <Link className={styles.cta} href="/peliculas">
-            Ver el top completo de {month} {year}
-          </Link>
-          <Link className={styles.cta} href={`/mejores/peliculas/${year}`}>
+          <Link className={styles.cta} href={`/peliculas`}>
             Mejores películas del año {year}
           </Link>
         </footer>
       </section>
+
+      <section className={styles.section}>
+        <header>
+          <p className={styles.subtitle}>
+            Las series estrenadas en {month} {year} mejor valoradas
+          </p>
+          <h2 className={styles.title}>
+            Mejores series {month} {year}
+          </h2>
+        </header>
+        <div className={styles.description}>
+          <p>
+            Aquí tienes un listado con las 10 mejores series estrenadas en{" "}
+            {month} {year} actualizado diariamente. Esperabas que apareciera una
+            serie en nuestro top y no la ves? No te preocupes, averigua en qué
+            posición está en nuestro{" "}
+            <Link href={`/mejores/series/${year}/${month}`}>
+              ranking completo de {month} {year}
+            </Link>
+          </p>
+        </div>
+        <List items={seriesMonth} dataprop="TVSeries" />
+        <footer className={styles.section_footer}>
+          <Link
+            className={styles.cta}
+            href={`/mejores/series/${year}/${month}`}
+          >
+            Ver el top completo de {month} {year}
+          </Link>
+        </footer>
+      </section>
+
+      <section className={styles.section}>
+        <header>
+          <p className={styles.subtitle}>
+            Las películas estrenadas en {month} {year} mejor valoradas
+          </p>
+          <h2 className={styles.title}>
+            Mejores películas {month} {year}
+          </h2>
+        </header>
+        <div className={styles.description}>
+          <p>
+            ¿Quieres saber cuáles son los mejores películas estrenadas en $
+            {month} {year}? Aquí tienes un listado con las 10 mejores películas
+            estrenadas en ${month} {year} actualizado diariamente. Además,
+            podrás consultar el{" "}
+            <Link href={"/mejores/peliculas"}>top de películas completo</Link>.
+          </p>
+        </div>
+        <List items={moviesMonth} dataprop="Movie" />
+        <footer className={styles.section_footer}>
+          <Link className={styles.cta} href={`/mejores/peliculas/${year}`}>
+            Mejores películas {month} {year}
+          </Link>
+        </footer>
+      </section>
+
       <section className={styles.section}>
         <header>
           <p className={styles.subtitle}>Últimos análisis del mes de {month}</p>
@@ -178,30 +216,49 @@ export async function getServerSideProps() {
   const year = getCurrentYear();
 
   try {
-    const [contentsResponse, reviewsResponse] = await Promise.all([
-      axios.get(
-        `${process.env.NEXT_PUBLIC_STRAPI_URL}/tops?filters[year][$eq][0]=${year}&filters[month][$eq][1]=${month}&populate=*`,
-        axiosConfig
-      ),
-      axios.get(
-        `${process.env.NEXT_PUBLIC_STRAPI_URL}/reviews?sort=createdAt:desc`,
-        axiosConfig
-      ),
-    ]);
+    const [contentsYearResponse, contentsMonthResponse, reviewsResponse] =
+      await Promise.all([
+        axios.get(
+          `${process.env.NEXT_PUBLIC_STRAPI_URL}/tops?filters[$and][0][year][$eq]=${year}&filters[$and][1][month][$null]&populate=*`,
+          axiosConfig
+        ),
+        axios.get(
+          `${process.env.NEXT_PUBLIC_STRAPI_URL}/tops?filters[year][$eq][0]=${year}&filters[month][$eq][1]=${month}&populate=*`,
+          axiosConfig
+        ),
+        axios.get(
+          `${process.env.NEXT_PUBLIC_STRAPI_URL}/reviews?sort=createdAt:desc`,
+          axiosConfig
+        ),
+      ]);
 
-    const contents = contentsResponse.data.data[0].attributes.contents.data;
+    const contentsYear =
+      contentsYearResponse.data.data[0].attributes.contents.data;
 
-    const series = contents
+    const contentsMonth =
+      contentsMonthResponse.data.data[0].attributes.contents.data;
+
+    const seriesYear = contentsYear
       .filter((i) => i.attributes.type === "tv_series")
       .slice(0, 10);
 
-    const movies = contents
+    const moviesYear = contentsYear
+      .filter((i) => i.attributes.type === "movie")
+      .slice(0, 10);
+
+    const seriesMonth = contentsMonth
+      .filter((i) => i.attributes.type === "tv_series")
+      .slice(0, 10);
+
+    const moviesMonth = contentsMonth
       .filter((i) => i.attributes.type === "movie")
       .slice(0, 10);
 
     const reviews = reviewsResponse.data.data.slice(0, 10);
 
-    return { props: { series, movies, reviews } };
+    return {
+      props: { seriesYear, moviesYear, seriesMonth, moviesMonth, reviews },
+    };
   } catch (error) {
     console.error("Error al obtener los datos:", error);
     return { props: { series: [], movies: [], reviews: [] } };
