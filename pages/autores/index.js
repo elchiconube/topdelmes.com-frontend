@@ -11,8 +11,6 @@ import Breadcrumb from "@/components/Breadcrumb";
 const Authors = ({ authors }) => {
   const { isFallback } = useRouter();
 
-  console.log(authors);
-
   if (isFallback) {
     return <div>Cargando...</div>;
   }

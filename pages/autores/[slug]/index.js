@@ -16,8 +16,6 @@ const Review = ({ author }) => {
     return <div>Cargando...</div>;
   }
 
-  console.log({ author });
-
   const body = markdownToHtml(author.attributes.bio);
 
   return (
