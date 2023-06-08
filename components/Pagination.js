@@ -1,4 +1,4 @@
-import styles from "@/styles/Reviews.module.css";
+import styles from "@/styles/Pagination.module.css";
 import Link from "next/link";
 
 const Pagination = ({ pagination }) =>
