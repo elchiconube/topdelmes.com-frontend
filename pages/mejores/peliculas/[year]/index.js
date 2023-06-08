@@ -24,19 +24,6 @@ const Movies = ({ year, movies }) => {
 
   return (
     <Layout>
-      <Breadcrumb
-        maxWidth={"100%"}
-        links={[
-          {
-            href: "https://topdelmes.com/",
-            name: "Inicio",
-          },
-          {
-            href: `https://topdelmes.com/mejores/peliculas/${year}`,
-            name: `Mejores peliculas de ${year}`,
-          },
-        ]}
-      />
       <Head>
         <title>{`Top ${year}: Mejores Películas | TopDelMes`}</title>
         <meta
@@ -52,6 +39,19 @@ const Movies = ({ year, movies }) => {
           href={`https://topdelmes.com/mejores/peliculas/${year}`}
         />
       </Head>
+      <Breadcrumb
+        maxWidth={"100%"}
+        links={[
+          {
+            href: "https://topdelmes.com/",
+            name: "Inicio",
+          },
+          {
+            href: `https://topdelmes.com/mejores/peliculas/${year}`,
+            name: `Mejores peliculas de ${year}`,
+          },
+        ]}
+      />
       <div
         className={styles.section}
         itemScope
