@@ -12,6 +12,7 @@ import imdbLogo from "@/public/imdb-logo.png";
 import YoutubeVideo from "@/components/YoutubeVideo";
 import Breadcrumb from "@/components/Breadcrumb";
 import popcorn from "@/public/popcorn.webp";
+import MovieCard from "@/components/MovieCard";
 const Review = ({ review }) => {
   const { isFallback } = useRouter();
 
@@ -41,6 +42,8 @@ const Review = ({ review }) => {
   const articleAuthor = author.data.attributes;
 
   const breadCrumbTitle = relatedContent ? relatedContent.title : title;
+
+  console.log({ relatedContent });
 
   return (
     <Layout>
@@ -144,21 +147,7 @@ const Review = ({ review }) => {
           />
         </figure>
         <div className={styles.data}>
-          {metascore && (
-            <p>
-              <Image
-                src={metascoreLogo}
-                width={16}
-                height={16}
-                alt="Metascore Logo"
-              />
-              {metascore}
-            </p>
-          )}
-          <p>
-            <Image src={imdbLogo} width={30} height={30} alt="IMDB Logo" />
-            {rate}
-          </p>
+          <p>Nota: {rate}/10</p>
         </div>
         <div
           itemProp="articleBody"
@@ -178,10 +167,10 @@ const Review = ({ review }) => {
       </article>
       {relatedContent ? (
         <footer itemScope itemType="http://schema.org/Movie">
+          <MovieCard movie={relatedContent} director={director} />
           <meta itemProp="name" content={relatedContent.title} />
-          <meta itemProp="image" content={relatedContent.poster} />
-          <meta itemProp="description" content={relatedContent.description} />
           <meta itemProp="director" content={director} />
+          <meta itemProp="description" content={relatedContent.description} />
           <meta itemProp="dateCreated" content={relatedContent.createdAt} />
           <div itemProp="offers" itemScope itemType="http://schema.org/Offer">
             <meta itemProp="price" content="0.00" />
