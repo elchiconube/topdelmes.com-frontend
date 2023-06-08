@@ -64,7 +64,7 @@ export async function getServerSideProps(context) {
     const response = await axios.get(url, axiosConfig);
 
     const reviews = response.data.data;
-    const pagination = response.data.meta.pagination;
+    const pagination = response.data.meta.pagination || null;
 
     return {
       props: {

@@ -28,6 +28,11 @@ const Footer = () => {
                 Análisis
               </Link>
             </li>
+            <li>
+              <Link href="/autores" className={styles.link}>
+                Autores
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

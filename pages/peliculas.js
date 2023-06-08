@@ -12,6 +12,7 @@ import {
 } from "@/utils";
 import Previous from "@/components/Previous";
 import PreviousYears from "@/components/PreviousYears";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const Movies = ({ movies }) => {
   const year = getCurrentYear();
@@ -31,6 +32,19 @@ const Movies = ({ movies }) => {
         />
         <link rel="canonical" href="https://topdelmes.com/peliculas" />
       </Head>
+      <Breadcrumb
+        maxWidth={"100%"}
+        links={[
+          {
+            href: "https://topdelmes.com/",
+            name: "Inicio",
+          },
+          {
+            href: `https://topdelmes.com/mejores/peliculas`,
+            name: `Mejores peliculas de ${year}`,
+          },
+        ]}
+      />
       <div
         className={styles.section}
         itemScope

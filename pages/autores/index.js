@@ -6,6 +6,7 @@ import axios from "axios";
 import { axiosConfig, limitDescription } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const Authors = ({ authors }) => {
   const { isFallback } = useRouter();
@@ -24,6 +25,21 @@ const Authors = ({ authors }) => {
         <meta name="keywords" content={``} />
         <link rel="canonical" href={`https://topdelmes.com/autores`} />
       </Head>
+
+      <Breadcrumb
+        maxWidth={900}
+        links={[
+          {
+            href: "https://topdelmes.com/",
+            name: "Inicio",
+          },
+          {
+            href: "https://topdelmes.com/autores",
+            name: "Autores",
+          },
+        ]}
+      />
+
       <div className={styles.section}>
         <h2 className={styles.subtitle}>Nuestros expertos</h2>
         <h1 className={styles.title}>Autores</h1>

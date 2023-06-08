@@ -104,6 +104,15 @@ export const limitDescription = (str) => {
   }
 };
 
+export const limitBreadcrumb = (str) => {
+  if (!str) return "";
+  if (str.length > 30) {
+    return str.slice(0, 30) + "...";
+  } else {
+    return str;
+  }
+};
+
 export const getAdjacentYears = (yearStr, type) => {
   const year = parseInt(yearStr, 10);
   if (isNaN(year)) {
