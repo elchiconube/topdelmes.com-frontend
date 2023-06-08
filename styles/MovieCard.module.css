@@ -1,0 +1,23 @@
+.movie{
+    color: var(--gainsboro);
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+
+.title{
+    color: var(--gainsboro);
+    font-size: var(--fs-4);
+}
+
+.movie p {
+    color: var(--gainsboro);
+    font-size: var(--fs-7);
+    display: flex;
+    align-items: center;
+    gap: var(--fs-6);
+    margin-bottom: var(--fs-12);
+}
