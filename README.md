@@ -11,3 +11,8 @@ yarn dev
 # or
 pnpm dev
 ```
+
+
+# Avatar
+
+https://generated.photos/faces/front-facing/adult

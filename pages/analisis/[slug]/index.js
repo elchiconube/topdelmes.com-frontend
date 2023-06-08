@@ -10,6 +10,7 @@ import Link from "next/link";
 import metascoreLogo from "@/public/metascore-logo.png";
 import imdbLogo from "@/public/imdb-logo.png";
 import YoutubeVideo from "@/components/YoutubeVideo";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const Review = ({ review }) => {
   const { isFallback } = useRouter();
@@ -38,6 +39,8 @@ const Review = ({ review }) => {
   const relatedContent =
     contents.data.length > 0 ? contents.data[0].attributes : null;
   const articleAuthor = author.data.attributes;
+
+  console.log(articleAuthor.avatar);
 
   const breadCrumbTitle = relatedContent ? relatedContent.title : title;
 
@@ -83,45 +86,22 @@ const Review = ({ review }) => {
         />
         <meta property="og:site_name" content="TopDelMes" />
       </Head>
-      <nav className={styles.breadcrumb}>
-        <ol itemScope itemType="http://schema.org/BreadcrumbList">
-          <li
-            itemProp="itemListElement"
-            itemScope
-            itemType="http://schema.org/ListItem"
-          >
-            <Link itemProp="item" href="https://topdelmes.com/">
-              <span itemProp="name">Inicio</span>
-            </Link>
-            <meta itemProp="position" content="1" />
-          </li>
-          »
-          <li
-            itemProp="itemListElement"
-            itemScope
-            itemType="http://schema.org/ListItem"
-          >
-            <Link itemProp="item" href="https://topdelmes.com/analisis">
-              <span itemProp="name">Análisis</span>
-            </Link>
-            <meta itemProp="position" content="2" />
-          </li>
-          »
-          <li
-            itemProp="itemListElement"
-            itemScope
-            itemType="http://schema.org/ListItem"
-          >
-            <Link
-              itemProp="item"
-              href={`https://topdelmes.com/analisis/${slug}`}
-            >
-              <span itemProp="name">{breadCrumbTitle}</span>
-            </Link>
-            <meta itemProp="position" content="3" />
-          </li>
-        </ol>
-      </nav>
+      <Breadcrumb
+        links={[
+          {
+            href: "https://topdelmes.com/",
+            name: "Inicio",
+          },
+          {
+            href: "https://topdelmes.com/analisis",
+            name: "Análisis",
+          },
+          {
+            href: `https://topdelmes.com/analisis/${slug}`,
+            name: breadCrumbTitle,
+          },
+        ]}
+      />
       <article
         className={styles.article}
         itemScope
@@ -129,11 +109,7 @@ const Review = ({ review }) => {
       >
         <h1 itemProp="headline">{title}</h1>
         <div className={styles.pre}>
-          <time dateTime={publishedAt} itemProp="datePublished">
-            {postFormatDate(publishedAt)}
-          </time>
-          <meta dateTime={updatedAt} itemProp="dateModified" />
-          <p
+          <address
             className={styles.author}
             itemProp="author"
             itemScope
@@ -141,12 +117,24 @@ const Review = ({ review }) => {
           >
             {articleAuthor ? (
               <Link itemProp="url" href={`/autores/${articleAuthor.slug}`}>
+                <figure className={styles.avatar}>
+                  <Image
+                    src={articleAuthor.avatar}
+                    width={70}
+                    height={70}
+                    alt={`Avatar de ${articleAuthor.fullname}`}
+                  />
+                </figure>
                 <span itemProp="name">{articleAuthor.fullname}</span>
               </Link>
             ) : (
               <span itemProp="name">TopDelMes</span>
             )}
-          </p>
+          </address>
+          <time dateTime={publishedAt} itemProp="datePublished">
+            {postFormatDate(publishedAt)}
+          </time>
+          <meta dateTime={updatedAt} itemProp="dateModified" />
         </div>
         {image && (
           <figure className={styles.figure}>

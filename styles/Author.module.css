@@ -1,0 +1,43 @@
+
+.section{
+    max-width: 900px;
+    text-align: center;
+    margin: 0 auto;
+    color: var(--gainsboro);
+    font-size: var(--fs-7);
+    padding: 32px;
+    position: relative;
+}
+.section article {
+    padding: 40px 0;
+}
+
+.section article  img{
+    border-radius: 50%;
+    display: inline-block;
+}
+
+
+.title{
+    text-align: center;
+    font-size: var(--fs-1);
+    color: var(--gainsboro);
+    line-height: 1.2;
+    margin-bottom: 18px;
+}
+.subtitle{
+    color: var(--citrine);
+    font-size: var(--fs-11);
+    font-weight: var(--fw-500);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+.body{
+    text-align: left;
+}
+
+.body p{
+    margin-bottom: 16px;
+}
+
