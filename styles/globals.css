@@ -82,6 +82,9 @@ html {
 
 body { background: var(--eerie-black); }
 
+address{
+    font-style: normal;
+}
 
 @media (min-width: 768px) {
   .container { max-width: 720px; }

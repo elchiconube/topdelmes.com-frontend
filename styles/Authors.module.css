@@ -1,0 +1,52 @@
+
+.section{
+    max-width: 900px;
+    text-align: center;
+    margin: 0 auto;
+    color: var(--gainsboro);
+    font-size: var(--fs-7);
+    padding: 32px;
+    position: relative;
+}
+.title{
+    text-align: center;
+    font-size: var(--fs-1);
+    color: var(--gainsboro);
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+.subtitle{
+    color: var(--citrine);
+    font-size: var(--fs-11);
+    font-weight: var(--fw-500);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+.authors{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 0 auto;
+    max-width: 900px;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.author{
+    text-align: center;
+}
+
+.author a {
+    color: var(--gainsboro);
+}
+
+.author a:hover {
+    color: var(--citrine);
+}
+
+.author img{
+    border-radius: 50%;
+    display: inline-block;
+}
+

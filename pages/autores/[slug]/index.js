@@ -5,6 +5,9 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { axiosConfig, markdownToHtml } from "@/utils";
 import Link from "next/link";
+import Image from "next/image";
+import Breadcrumb from "@/components/Breadcrumb";
+import ReviewList from "@/components/ReviewList";
 
 const Review = ({ author }) => {
   const { isFallback } = useRouter();
@@ -12,6 +15,8 @@ const Review = ({ author }) => {
   if (isFallback || !author) {
     return <div>Cargando...</div>;
   }
+
+  console.log({ author });
 
   const body = markdownToHtml(author.attributes.bio);
 
@@ -26,20 +31,46 @@ const Review = ({ author }) => {
           href={`https://topdelmes.com/autores/${author.attributes.slug}`}
         />
       </Head>
+      <Breadcrumb
+        maxWidth={900}
+        links={[
+          { href: "https://topdelmes.com/", name: "Inicio" },
+          { href: "https://topdelmes.com/autores", name: "Autores" },
+          {
+            href: `https://topdelmes.com/autores/${author.attributes.slug}`,
+            name: author.attributes.fullname,
+          },
+        ]}
+      />
+      <div
+        className={styles.section}
+        itemProp="author"
+        itemScope
+        itemType="http://schema.org/Person"
+      >
+        <article>
+          <figure>
+            <Image
+              alt={author.attributes.fullname}
+              src={author.attributes.avatar}
+              width={120}
+              height={120}
+            />
+          </figure>
+          <h2 className={styles.subtitle}>
+            Periodista especialista en críticas de cine y series
+          </h2>
+          <h1 className={styles.title}>{author.attributes.fullname}</h1>
 
-      <nav className={styles.breadcrumb}>
-        <i>»</i> <Link href="/autores">Autores</Link>
-      </nav>
+          <div
+            itemProp="articleBody"
+            className={styles.body}
+            dangerouslySetInnerHTML={{ __html: body }}
+          />
+        </article>
+      </div>
 
-      <article>
-        <h1>{author.attributes.fullname}</h1>
-
-        <div
-          itemProp="articleBody"
-          className={styles.body}
-          dangerouslySetInnerHTML={{ __html: body }}
-        />
-      </article>
+      <ReviewList reviews={author.attributes.reviews.data} />
     </Layout>
   );
 };
