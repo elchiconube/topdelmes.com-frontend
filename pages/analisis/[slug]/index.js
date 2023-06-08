@@ -40,8 +40,6 @@ const Review = ({ review }) => {
     contents.data.length > 0 ? contents.data[0].attributes : null;
   const articleAuthor = author.data.attributes;
 
-  console.log(articleAuthor.avatar);
-
   const breadCrumbTitle = relatedContent ? relatedContent.title : title;
 
   return (

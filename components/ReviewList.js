@@ -20,6 +20,7 @@ const ReviewList = ({ reviews = [] }) => {
               <a href={`/analisis/${review.attributes.slug}`} itemProp="url">
                 {review.attributes.image && (
                   <Image
+                    itemProp="image"
                     loading={"lazy"}
                     alt={review.attributes.title}
                     src={review.attributes.image}
@@ -53,7 +54,15 @@ const ReviewList = ({ reviews = [] }) => {
                 itemScope
                 itemType="http://schema.org/Person"
               >
-                <meta itemProp="name" content="Oscar Bustos" />
+                <meta
+                  itemProp="url"
+                  content={`https://topdelmes.com/autores/${review.attributes.author?.data.attributes.slug}`}
+                />
+
+                <meta
+                  itemProp="name"
+                  content={review.attributes.author?.data.attributes.fullname}
+                />
               </div>
             </div>
           </article>

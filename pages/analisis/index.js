@@ -57,7 +57,7 @@ export async function getServerSideProps(context) {
   const { page } = context.query;
 
   try {
-    let url = `${process.env.NEXT_PUBLIC_STRAPI_URL}/reviews?sort=createdAt:desc`;
+    let url = `${process.env.NEXT_PUBLIC_STRAPI_URL}/reviews?sort=createdAt:desc&populate=*`;
 
     if (page) url += `&pagination[page]=${page}`;
 
