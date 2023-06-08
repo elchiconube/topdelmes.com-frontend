@@ -57,14 +57,14 @@ export async function getServerSideProps(context) {
   const { page } = context.query;
 
   try {
-    let url = `${process.env.NEXT_PUBLIC_STRAPI_URL}/reviews?sort=createdAt:desc`;
+    let url = `${process.env.NEXT_PUBLIC_STRAPI_URL}/reviews?sort=createdAt:desc&populate=*`;
 
     if (page) url += `&pagination[page]=${page}`;
 
     const response = await axios.get(url, axiosConfig);
 
     const reviews = response.data.data;
-    const pagination = response.data.meta.pagination;
+    const pagination = response.data.meta.pagination || null;
 
     return {
       props: {

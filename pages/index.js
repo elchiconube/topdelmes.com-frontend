@@ -228,7 +228,7 @@ export async function getServerSideProps() {
           axiosConfig
         ),
         axios.get(
-          `${process.env.NEXT_PUBLIC_STRAPI_URL}/reviews?sort=createdAt:desc`,
+          `${process.env.NEXT_PUBLIC_STRAPI_URL}/reviews?sort=createdAt:desc&populate=*`,
           axiosConfig
         ),
       ]);

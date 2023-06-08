@@ -11,7 +11,7 @@ import metascoreLogo from "@/public/metascore-logo.png";
 import imdbLogo from "@/public/imdb-logo.png";
 import YoutubeVideo from "@/components/YoutubeVideo";
 import Breadcrumb from "@/components/Breadcrumb";
-
+import popcorn from "@/public/popcorn.webp";
 const Review = ({ review }) => {
   const { isFallback } = useRouter();
 
@@ -39,8 +39,6 @@ const Review = ({ review }) => {
   const relatedContent =
     contents.data.length > 0 ? contents.data[0].attributes : null;
   const articleAuthor = author.data.attributes;
-
-  console.log(articleAuthor.avatar);
 
   const breadCrumbTitle = relatedContent ? relatedContent.title : title;
 
@@ -136,17 +134,15 @@ const Review = ({ review }) => {
           </time>
           <meta dateTime={updatedAt} itemProp="dateModified" />
         </div>
-        {image && (
-          <figure className={styles.figure}>
-            <Image
-              itemProp="image"
-              src={image}
-              width={862}
-              height={465}
-              alt={`Análisis ${title}`}
-            />
-          </figure>
-        )}
+        <figure className={styles.figure}>
+          <Image
+            itemProp="image"
+            src={image || popcorn}
+            width={862}
+            height={465}
+            alt={`Análisis ${title}`}
+          />
+        </figure>
         <div className={styles.data}>
           {metascore && (
             <p>

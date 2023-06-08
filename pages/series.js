@@ -12,6 +12,7 @@ import {
 } from "@/utils";
 import Previous from "@/components/Previous";
 import PreviousYears from "@/components/PreviousYears";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const Series = ({ series }) => {
   const year = getCurrentYear();
@@ -30,11 +31,25 @@ const Series = ({ series }) => {
         />
         <link rel="canonical" href="https://topdelmes.com/series" />
       </Head>
+
       <div
         className={styles.section}
         itemScope
         itemType="http://schema.org/ItemList"
       >
+        <Breadcrumb
+          maxWidth={"100%"}
+          links={[
+            {
+              href: "https://topdelmes.com/",
+              name: "Inicio",
+            },
+            {
+              href: `https://topdelmes.com/mejores/series`,
+              name: `Mejores series de ${year}`,
+            },
+          ]}
+        />
         <h1 className={styles.title}>Top 50 de series {year}</h1>
         <h2 className={styles.subtitle}>
           Las series más populares y mejor puntuadas del mes de {year}{" "}

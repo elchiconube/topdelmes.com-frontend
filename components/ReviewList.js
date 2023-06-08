@@ -1,6 +1,6 @@
 import styles from "../styles/ReviewList.module.css";
 import { limitDescription, postFormatDate, sortByField } from "@/utils";
-import pattern from "@/public/pattern.png";
+import popcorn from "@/public/popcorn.webp";
 import Image from "next/image";
 
 const ReviewList = ({ reviews = [] }) => {
@@ -18,19 +18,18 @@ const ReviewList = ({ reviews = [] }) => {
           <article className={styles.article}>
             <figure>
               <a href={`/analisis/${review.attributes.slug}`} itemProp="url">
-                {review.attributes.image && (
-                  <Image
-                    loading={"lazy"}
-                    alt={review.attributes.title}
-                    src={review.attributes.image}
-                    quality={100}
-                    fill
-                    sizes="100vw"
-                    style={{
-                      objectFit: "cover",
-                    }}
-                  />
-                )}
+                <Image
+                  itemProp="image"
+                  loading={"lazy"}
+                  alt={review.attributes.title}
+                  src={review.attributes?.image || popcorn}
+                  quality={100}
+                  fill
+                  sizes="100vw"
+                  style={{
+                    objectFit: "cover",
+                  }}
+                />
               </a>
             </figure>
             <div className={styles.container}>
@@ -53,7 +52,15 @@ const ReviewList = ({ reviews = [] }) => {
                 itemScope
                 itemType="http://schema.org/Person"
               >
-                <meta itemProp="name" content="Oscar Bustos" />
+                <meta
+                  itemProp="url"
+                  content={`https://topdelmes.com/autores/${review.attributes.author?.data.attributes.slug}`}
+                />
+
+                <meta
+                  itemProp="name"
+                  content={review.attributes.author?.data.attributes.fullname}
+                />
               </div>
             </div>
           </article>

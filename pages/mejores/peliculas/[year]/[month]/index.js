@@ -12,6 +12,7 @@ import {
   axiosConfig,
 } from "@/utils";
 import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const Peliculas = ({ year, month, movies }) => {
   const { isFallback } = useRouter();
@@ -39,6 +40,19 @@ const Peliculas = ({ year, month, movies }) => {
           href={`https://topdelmes.com/mejores/peliculas/${year}/${month}`}
         />
       </Head>
+      <Breadcrumb
+        maxWidth={"100%"}
+        links={[
+          {
+            href: "https://topdelmes.com/",
+            name: "Inicio",
+          },
+          {
+            href: `https://topdelmes.com/mejores/peliculas/${year}/${month}`,
+            name: `Mejores peliculas de ${month} ${year}`,
+          },
+        ]}
+      />
       <div
         className={styles.section}
         itemScope

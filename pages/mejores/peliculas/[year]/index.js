@@ -11,6 +11,7 @@ import {
   isValidYear,
 } from "@/utils";
 import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const Movies = ({ year, movies }) => {
   const { isFallback } = useRouter();
@@ -23,6 +24,19 @@ const Movies = ({ year, movies }) => {
 
   return (
     <Layout>
+      <Breadcrumb
+        maxWidth={"100%"}
+        links={[
+          {
+            href: "https://topdelmes.com/",
+            name: "Inicio",
+          },
+          {
+            href: `https://topdelmes.com/mejores/peliculas/${year}`,
+            name: `Mejores peliculas de ${year}`,
+          },
+        ]}
+      />
       <Head>
         <title>{`Top ${year}: Mejores Películas | TopDelMes`}</title>
         <meta
