@@ -31,9 +31,10 @@ const months = [
 
 const pages = [
   { url: "/", priority: 1.0, changefreq: "daily" },
-  { url: "/analisis", priority: 0.8, changefreq: "daily" },
-  { url: "/series", priority: 0.8, changefreq: "monthly" },
-  { url: "/peliculas", priority: 0.8, changefreq: "monthly" },
+  { url: "/analisis", priority: 1.0, changefreq: "daily" },
+  { url: "/series", priority: 0.5, changefreq: "daily" },
+  { url: "/peliculas", priority: 0.5, changefreq: "daily" },
+  { url: "/autores", priority: 0.8, changefreq: "monthly" },
 ];
 
 for (let year = 1990; year <= currentYear; year++) {

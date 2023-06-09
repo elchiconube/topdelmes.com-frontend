@@ -3,8 +3,6 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
-
-import List from "@/components/List";
 import Layout from "@/components/Layout";
 import Loader from "@/components/Loader";
 import styles from "@/styles/Home.module.css";
@@ -16,6 +14,11 @@ import {
   getToday,
 } from "@/utils";
 import pattern from "@/public/pattern.png";
+
+const List = dynamic(() => import("@/components/List"), {
+  ssr: false,
+  loading: () => <Loader />,
+});
 
 const ReviewList = dynamic(() => import("@/components/ReviewList"), {
   ssr: false,
@@ -75,7 +78,7 @@ const Home = ({
           }}
         />
         <div>
-          <h1 className={styles.heading}>Top del mes</h1>
+          <h1 className={styles.heading}>TopDelMes</h1>
           <h2 className={styles.subtitle}>Actualizado {today}</h2>
           <p>
             Bienvenido a TopDelMes, tu web de información sobre las mejores
