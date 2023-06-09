@@ -84,7 +84,7 @@ const Card = ({ item, ranking }) => {
                 className={styles.link}
                 href={`/analisis/${review.attributes.slug}`}
               >
-                Leer análisis
+                Leer análisis: {review.attributes.rate}/10
               </Link>
             ))
           : null}
