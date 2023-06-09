@@ -7,7 +7,6 @@
     grid-template-columns: repeat(2, 1fr);
 }
 
-
 .title{
     color: var(--gainsboro);
     font-size: var(--fs-4);
@@ -21,3 +20,20 @@
     gap: var(--fs-6);
     margin-bottom: var(--fs-12);
 }
+
+@media screen and (max-width: 768px){
+    .movie{
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    .movie figure {
+        text-align: center;
+    }
+
+    .movie figure img{
+        display: inline-block;
+    }
+
+}
+
