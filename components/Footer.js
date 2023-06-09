@@ -37,7 +37,7 @@ const Footer = () => {
         </div>
       </div>
       <div className={styles.copyright}>
-        &copy; {new Date().getFullYear()} Top del mes.
+        &copy; {new Date().getFullYear()} topdelmes.com
       </div>
     </footer>
   );
