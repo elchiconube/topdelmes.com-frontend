@@ -22,7 +22,6 @@ const Review = ({ review }) => {
 
   const {
     title,
-    metascore,
     trailer,
     slug,
     body,
@@ -32,7 +31,7 @@ const Review = ({ review }) => {
     updatedAt,
     author,
     contents,
-    rate = 6,
+    rate,
   } = review.attributes;
 
   const reviewBody = markdownToHtml(body);
@@ -147,7 +146,7 @@ const Review = ({ review }) => {
           />
         </figure>
         <div className={styles.data}>
-          <p>Nota: {rate}/10</p>
+          <p>Nota: {rate || 6}/10</p>
         </div>
         <div
           itemProp="articleBody"
@@ -203,7 +202,7 @@ const Review = ({ review }) => {
             >
               <meta itemProp="bestRating" content="10" />
               <meta itemProp="worstRating" content="0" />
-              <meta itemProp="ratingValue" content={rate} />
+              <meta itemProp="ratingValue" content={rate || 6} />
             </div>
             <meta itemProp="name" content={relatedContent.title} />
             <meta itemProp="reviewBody" content={removeMarkdown(body)} />
