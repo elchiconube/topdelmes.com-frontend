@@ -220,15 +220,15 @@ export async function getServerSideProps() {
     const [contentsYearResponse, contentsMonthResponse, reviewsResponse] =
       await Promise.all([
         axios.get(
-          `${process.env.NEXT_PUBLIC_STRAPI_URL}/tops?filters[$and][0][year][$eq]=${year}&filters[$and][1][month][$null]&populate=*`,
+          `${process.env.NEXT_PUBLIC_STRAPI_URL}/tops?filters[$and][0][year][$eq]=${year}&filters[$and][1][month][$null]=null&populate=contents`,
           axiosConfig
         ),
         axios.get(
-          `${process.env.NEXT_PUBLIC_STRAPI_URL}/tops?filters[year][$eq][0]=${year}&filters[month][$eq][1]=${month}&populate=*`,
+          `${process.env.NEXT_PUBLIC_STRAPI_URL}/tops?filters[year][$eq][0]=${year}&filters[month][$eq][1]=${month}&populate=contents`,
           axiosConfig
         ),
         axios.get(
-          `${process.env.NEXT_PUBLIC_STRAPI_URL}/reviews?sort=createdAt:desc&populate=*`,
+          `${process.env.NEXT_PUBLIC_STRAPI_URL}/reviews?sort=createdAt:desc&populate=contents`,
           axiosConfig
         ),
       ]);

@@ -112,7 +112,7 @@ export async function getServerSideProps(context) {
     }
 
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/tops?filters[$and][0][year][$eq]=${year}&filters[$and][1][month][$null]&populate=*`,
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/tops?filters[$and][0][year][$eq]=${year}&filters[$and][1][month][$null]=null&populate=contents`,
       axiosConfig
     );
 
