@@ -1,7 +1,7 @@
 import styles from "../styles/List.module.css";
 import Card from "./Card";
 
-const List = ({ items, dataprop }) => {
+const List = ({ items = [], dataprop }) => {
   const getDirector = (item) =>
     item?.reviews?.data[0]?.attributes?.director || null;
 
