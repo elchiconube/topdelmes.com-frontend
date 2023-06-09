@@ -1,3 +1,8 @@
+.container{
+    padding: 40px;
+    text-align: center;
+}
+
 .loader {
     width : 48px;
     height: 48px;
