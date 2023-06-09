@@ -106,8 +106,8 @@ export const limitDescription = (str) => {
 
 export const limitBreadcrumb = (str) => {
   if (!str) return "";
-  if (str.length > 30) {
-    return str.slice(0, 30) + "...";
+  if (str.length > 23) {
+    return str.slice(0, 23) + "...";
   } else {
     return str;
   }
