@@ -16,22 +16,27 @@ import {
 import pattern from "@/public/pattern.png";
 
 const List = dynamic(() => import("@/components/List"), {
+  ssr: false,
   loading: () => <Loader />,
 });
 
 const ReviewList = dynamic(() => import("@/components/ReviewList"), {
+  ssr: false,
   loading: () => <Loader />,
 });
 
 const Previous = dynamic(() => import("@/components/Previous"), {
+  ssr: false,
   loading: () => <Loader />,
 });
 
 const PreviousYears = dynamic(() => import("@/components/PreviousYears"), {
+  ssr: false,
   loading: () => <Loader />,
 });
 
 const TimeMachine = dynamic(() => import("@/components/TimeMachine"), {
+  ssr: false,
   loading: () => <Loader />,
 });
 
