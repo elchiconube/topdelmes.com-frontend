@@ -33,6 +33,14 @@ export default function App({ Component, pageProps }) {
           gtag('config', 'G-NP9L1106X4');
         `}
       </Script>
+      <Script
+        src="https://chatfast.io/chat.script.js"
+        data-chat-service="ChatFast"
+        data-bot-id="bb136b44-fee5-4cce-acda-91af014d529b"
+        data-chat-width="450px"
+        data-chat-height="600px"
+      />
+
       <Component {...pageProps} />
     </>
   );
