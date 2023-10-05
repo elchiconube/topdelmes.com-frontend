@@ -193,9 +193,9 @@ const Home = ({
         </header>
         <div className={styles.description}>
           <p>
-            ¿Quieres saber cuáles son los mejores películas estrenadas en $
+            ¿Quieres saber cuáles son los mejores películas estrenadas en 
             {month} {year}? Aquí tienes un listado con las 10 mejores películas
-            estrenadas en ${month} {year} actualizado diariamente. Además,
+            estrenadas en {month} {year} actualizado diariamente. Además,
             podrás consultar el{" "}
             <Link href={"/mejores/peliculas"}>top de películas completo</Link>.
           </p>
