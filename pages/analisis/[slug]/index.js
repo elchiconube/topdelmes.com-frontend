@@ -42,8 +42,6 @@ const Review = ({ review }) => {
 
   const breadCrumbTitle = relatedContent ? relatedContent.title : title;
 
-  console.log({ relatedContent });
-
   return (
     <Layout>
       <Head>
